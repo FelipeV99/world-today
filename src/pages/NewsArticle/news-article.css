@@ -1,0 +1,37 @@
+.news-article-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 680px;
+}
+
+.paragraph {
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.news-article-tags {
+  display: flex;
+  gap: var(--space-xs);
+}
+
+.date {
+  color: var(--grey-700);
+}
+
+.skeleton-inline {
+  height: 20px;
+}
+
+.news-skeleton-img {
+  height: 320px;
+  width: 680px;
+}
+
+#news-skeleton-h1 {
+  height: 40px;
+  width: 100%;
+}
+
+.news-article-tags.skeleton {
+  width: 240px;
+}

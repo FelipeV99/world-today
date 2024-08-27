@@ -1,13 +1,251 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+
+:root {
+  --grey-100: #ffffff;
+  --grey-200: #f5f0e7;
+  --grey-300: #dcdcdc;
+  --grey-400: #b6b6b6;
+  --grey-500: #a1a1a1;
+  --grey-600: #757575;
+  --grey-700: #494949;
+  --grey-800: #3a3a3a;
+  --grey-900: #1e1e1e;
+
+  --yellow-100: #f5f0e7;
+  --yellow-200: #e7e0d2;
+  --yellow-300: #ccc1ad;
+
+  --red-100: #f9d4d4;
+
+  --red-300: #de3d3d;
+
+  --space-xxs: 4px;
+  --space-xs: 8px;
+  --space-s: 16px;
+  --space-m: 24px;
+  --space-l: 32px;
+  --space-xl: 64px;
+
+  --border-xxs: 4px;
+
+  /* --h1: 44px */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: "Raleway", sans-serif;
+}
+
+body {
+  background-color: var(--yellow-100);
+}
+
+h1 {
+  font-size: 44px;
+  font-weight: 600;
+  color: var(--grey-900);
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--grey-800);
+}
+
+p {
+  color: var(--grey-800);
+  font-size: 16px;
+}
+
+a {
+  text-decoration: none;
+  color: var(--grey-800);
+}
+
+a:visited {
+  text-decoration: none;
+  color: var(--grey-800);
+}
+
+img {
+  border-radius: 4px;
+}
+
+label {
+  color: var(--grey-600);
+  font-size: 14px;
+}
+
+.grey-100 {
+  color: white;
+}
+
+.grey-600 {
+  color: var(--grey-600);
+}
+/* 8, 16, 24, 32, 64 */
+
+.space-ver-xxs {
+  height: var(--space-xxs);
+  flex-shrink: 0;
+}
+
+.space-ver-xs {
+  height: var(--space-xs);
+  flex-shrink: 0;
+}
+
+.space-ver-s {
+  height: var(--space-s);
+  flex-shrink: 0;
+}
+
+.space-ver-m {
+  height: var(--space-m);
+  flex-shrink: 0;
+
+  /* height: 24px; */
+}
+
+.space-ver-l {
+  height: var(--space-l);
+  flex-shrink: 0;
+}
+
+.space-ver-xl {
+  height: var(--space-xl);
+  flex-shrink: 0;
+}
+
+.line-hor {
+  width: 100%;
+  height: 1px;
+  background-color: var(--grey-400);
+}
+
+.img-fit {
+  width: 100%;
+}
+
+.btn-primary {
+  border: 0;
+  /* border-bottom: solid 2px var(--grey-900); */
+  /* background-color: transparent; */
+  /* color: var(--grey-900); */
+  color: var(--yellow-100);
+
+  background-color: var(--grey-900);
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.btn-primary:disabled {
+  background-color: var(--grey-600);
+}
+
+.btn-secondary {
+  border: 0;
+  background-color: transparent;
+  font-size: 16px;
+  color: var(--grey-700);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-thin {
+  font-size: 16px;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: var(--space-m);
+  padding-right: var(--space-m);
+}
+/* 
+.skeleton {
+  position: relative;
+} */
+
+.skeleton {
+  content: "";
+  width: 100%;
+  z-index: 10;
+  background: linear-gradient(
+    90deg,
+    var(--yellow-200),
+    var(--yellow-300),
+    var(--yellow-200)
+  );
+  background-size: 200%;
+  animation: skeleton 1s infinite reverse;
+  border-radius: 4px;
+}
+
+.subtitle {
+  font-weight: 400;
+  color: var(--grey-700);
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-field {
+  border: 0;
+  border-bottom: solid 1px var(--grey-300);
+  background-color: transparent;
+  height: 42px;
+}
+
+.input-field:focus {
+  border: none;
+  outline: none;
+  border-bottom: solid 1px var(--grey-300);
+}
+
+.input-error {
+  color: var(--red-300);
+}
+
+label.error {
+  color: var(--red-300);
+}
+
+input.error {
+  color: var(--red-300);
+  border-color: var(--red-300);
+}
+
+.hidden {
+  display: none;
+}
+
+.asterisk {
+  font-size: 18px;
+  color: var(--grey-500);
+}
+
+@keyframes skeleton {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 100%;
+  }
+}
+
+@media (max-width: 1080px) {
+  #root {
+    padding-left: var(--space-m);
+    padding-right: var(--space-m);
+  }
 }

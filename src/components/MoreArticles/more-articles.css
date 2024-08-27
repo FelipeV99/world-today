@@ -1,0 +1,21 @@
+.more-container {
+  padding-top: var(--space-m);
+}
+
+.more-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: var(--space-s);
+  row-gap: var(--space-m);
+}
+
+.card-three {
+  cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .more-grid {
+    grid-template-columns: 1fr;
+    row-gap: var(--space-l);
+  }
+}
