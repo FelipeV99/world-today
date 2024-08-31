@@ -32,7 +32,7 @@ export const router = createBrowserRouter([
             path: "news/:newsId",
             element: <NewsArticle />,
             loader: newsArticleLoader,
-            action: newsArticleAction,
+            // action: newsArticleAction,
           },
 
           {

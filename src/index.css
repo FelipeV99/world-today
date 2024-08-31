@@ -168,6 +168,7 @@ label {
   align-items: center;
   padding-left: var(--space-m);
   padding-right: var(--space-m);
+  min-width: 360px;
 }
 /* 
 .skeleton {
@@ -247,5 +248,12 @@ input.error {
   #root {
     padding-left: var(--space-m);
     padding-right: var(--space-m);
+  }
+}
+
+@media (max-width: 480px) {
+  #root {
+    padding-left: var(--space-xs);
+    padding-right: var(--space-xs);
   }
 }

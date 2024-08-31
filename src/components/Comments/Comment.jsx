@@ -13,9 +13,9 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../App";
 
 import { usePopper } from "react-popper";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
-const Comment = ({ comment }) => {
+const Comment = ({ comment, handleOnDeleteComment }) => {
   const [userProfile, setUserProfile] = useState("");
   const [isPopoverVisible, setIsPopoverVisible] = useState(false);
   const currentUser = useContext(AuthContext);
@@ -25,9 +25,9 @@ const Comment = ({ comment }) => {
   const { styles, attributes } = usePopper(refenceElement, popperElement, {
     placement: "top-end",
   });
-  // const [reRender, setReRender] = useState(false);
   // const navigate = useNavigate();
 
+  //I think this function is slowing down the code a lot, I should probably request the users in the route loader
   async function getUserProfile() {
     const userProfileDocRef = doc(db, "user-profiles", comment.userId);
     const userProfileDocSnap = await getDoc(userProfileDocRef);
@@ -38,6 +38,7 @@ const Comment = ({ comment }) => {
         id: userProfileDocSnap.id,
       });
     }
+    // console.log()
   }
   useEffect(() => {
     getUserProfile();
@@ -45,14 +46,19 @@ const Comment = ({ comment }) => {
   }, []);
 
   async function handleOnClickDelete() {
-    await deleteDoc(doc(db, "comments", comment.id));
-    const userProfilesRef = doc(db, "user-profiles", userProfile.id);
+    // await deleteDoc(doc(db, "comments", comment.id));
+    // const userProfilesRef = doc(db, "user-profiles", userProfile.id);
 
-    await updateDoc(userProfilesRef, {
-      comments: arrayRemove(comment.id),
-    });
-    // navigate("")
-    // setReRender((currentValue) => !currentValue);
+    // await updateDoc(userProfilesRef, {
+    //   comments: arrayRemove(comment.id),
+    // });
+    await handleOnDeleteComment(comment.id, userProfile.id);
+    setIsPopoverVisible(false);
+
+    //after deleting it from the db I would need to rerender
+    //the coments component, but for that I would need to create
+    //a state with an array of all comments, and delete it from the
+    //state so that the component rerenders
   }
 
   return (
@@ -62,7 +68,7 @@ const Comment = ({ comment }) => {
           <span className="comment-username">{userProfile?.username}</span>
           <span className="comment-date">{comment.date}</span>
         </div>
-        {userProfile.id == currentUser?.uid ? (
+        {userProfile.id === currentUser?.uid ? (
           <div>
             <img
               id="dots-delete"
@@ -88,14 +94,6 @@ const Comment = ({ comment }) => {
             ) : (
               <></>
             )}
-            {/* <div
-              //   style={styles.popper}
-              //   {...attributes}
-              //   ref={setPopperElement}
-              className="delete-popover"
-            >
-              delete
-            </div> */}
           </div>
         ) : (
           <></>
@@ -104,12 +102,6 @@ const Comment = ({ comment }) => {
 
       <div className="space-ver-xxs"></div>
       <p className="comment-content">{comment.content}</p>
-
-      {/* {userProfile.id == currentUser.uid ? (
-        <p onClick={handleOnClickDelete}>DELETE</p>
-      ) : (
-        <></>
-      )} */}
     </div>
   );
 };

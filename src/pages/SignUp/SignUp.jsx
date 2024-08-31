@@ -1,7 +1,6 @@
 import "./sign-up.css";
 
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { useEffect, useState } from "react";
 import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
 import { auth, db } from "../../config/firebase";
 import { doc, setDoc } from "firebase/firestore";
@@ -16,45 +15,26 @@ export default function SignUp() {
     passwordsMismatch: "",
     passwordTooShort: false,
   };
-  const [errorsState, setErrorsState] = useState(errors);
-  useEffect(() => {
-    if (errors.areThereErrors) {
-      setErrorsState(errors);
-    }
-  }, [errors]);
-
-  // console.log("errors from state", errorsState);
 
   return (
     <div className="signup-container">
       <Form method="post" className="signup-form">
         <h2>Sign Up</h2>
         <div className="space-ver-m"></div>
-        {/*         
-        {errorsState.missingFieldsError.length > 0 ? (
-          <p className="input-error">There are fields unfilled.</p>
-        ) : (
-          ""
-        )}
-        {errorsState.passwordsMismatch !== "" ? (
-          <p className="input-error">Passwords don't match</p>
-        ) : (
-          ""
-        )} */}
-        {errorsState.areThereErrors ? (
+        {errors.areThereErrors ? (
           <>
             <ul className="errors-ul">
-              {errorsState.missingFieldsError.length > 0 ? (
-                <li className="error-li">There are fields unfilled.</li>
+              {errors.missingFieldsError.length > 0 ? (
+                <li className="error-li">There are missing fields.</li>
               ) : (
                 ""
               )}
-              {errorsState.passwordsMismatch !== "" ? (
+              {errors.passwordsMismatch !== "" ? (
                 <li className="error-li">Passwords don&apos;t match.</li>
               ) : (
                 ""
               )}
-              {errorsState.passwordTooShort ? (
+              {errors.passwordTooShort ? (
                 <li className="error-li">
                   Password should be more than 6 characters long.
                 </li>
@@ -67,77 +47,25 @@ export default function SignUp() {
         ) : (
           <></>
         )}
-
         <InputField
-          error={errorsState.missingFieldsError.includes("username")}
+          error={errors.missingFieldsError.includes("username")}
           name="username"
           type="text"
         />
         <div className="space-ver-m"></div>
         <InputField name="email" type="email" />
-        {/* <div className="input-group">
-          <label htmlFor="email">
-            email<strong className="asterisk">*</strong>
-          </label>
-          <input className="input-field" name="email" type="email" />
-        </div> */}
         <div className="space-ver-m"></div>
         <InputField
-          error={errorsState.passwordsMismatch || errorsState.passwordTooShort}
+          error={errors.passwordsMismatch || errors.passwordTooShort}
           name="password"
           type="password"
         />
-        {/*         
-        <div className="input-group">
-          <label
-            htmlFor="password"
-            className={`${
-              errorsState.passwordsMismatch || errorsState.passwordTooShort
-                ? "error"
-                : ""
-            }`}
-          >
-            password<strong className="asterisk">*</strong>
-          </label>
-
-          <input
-            className={`input-field ${
-              errorsState.passwordsMismatch || errorsState.passwordTooShort
-                ? "error"
-                : ""
-            }`}
-            name="password"
-            type="password"
-          />
-        </div> */}
         <div className="space-ver-m"></div>
         <InputField
-          error={errorsState.passwordsMismatch || errorsState.passwordTooShort}
+          error={errors.passwordsMismatch || errors.passwordTooShort}
           name="repeat-password"
           type="password"
         />
-        {/* <div className="input-group">
-          <label
-            htmlFor="repeat-password"
-            className={`${
-              errorsState.passwordsMismatch || errorsState.passwordTooShort
-                ? "error"
-                : ""
-            }`}
-          >
-            confirm password<strong className="asterisk">*</strong>
-          </label>
-
-          <input
-            className={`input-field ${
-              errorsState.passwordsMismatch || errorsState.passwordTooShort
-                ? "error"
-                : ""
-            }`}
-            name="repeat-password"
-            type="password"
-          />
-        </div> */}
         <div className="space-ver-xl"></div>
         <button
           className="btn-primary"
@@ -146,7 +74,6 @@ export default function SignUp() {
           Sign up
         </button>
       </Form>
-      {/* <div className="signup-right"></div> */}
     </div>
   );
 }
@@ -172,7 +99,7 @@ export async function signUpAction({ request }) {
 }
 
 function formValidation(username, email, password, passwordRepeat) {
-  //maybe use an object instead ofan array here
+  //maybe use an object instead of an array here
   const missingFieldError = [];
   const errors = {
     areThereErrors: false,
@@ -196,7 +123,6 @@ function formValidation(username, email, password, passwordRepeat) {
     errors.areThereErrors = true;
     errors.missingFieldsError.push("password");
   } else if (password.length < 6) {
-    // console.log("password is too short");
     errors.areThereErrors = true;
     errors.passwordTooShort = true;
   }
