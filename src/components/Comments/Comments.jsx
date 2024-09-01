@@ -10,12 +10,14 @@ import {
   deleteDoc,
   doc,
   getDocs,
+  orderBy,
   query,
   updateDoc,
   where,
 } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import Button from "../Button/Button";
+import { format } from "date-fns";
 
 // const Comments = ({ comments, newsArticleId }) => {
 const Comments = ({ newsArticleId }) => {
@@ -29,7 +31,8 @@ const Comments = ({ newsArticleId }) => {
     const commentsRef = collection(db, "comments");
     const commentsQ = query(
       commentsRef,
-      where("newsArticleId", "==", newsArticleId)
+      where("newsArticleId", "==", newsArticleId),
+      orderBy("formatDate", "desc")
     );
     const commentsQuerySnap = await getDocs(commentsQ);
     const commentsFromQuery = [];
@@ -58,6 +61,7 @@ const Comments = ({ newsArticleId }) => {
       content: commentInputRef.current.value,
       date: formattedDate,
       newsArticleId: newsArticleId,
+      formatDate: format(new Date(), "yyyy-L-d H:m:s"),
     });
     // console.log(commentDocRef.data());
     const userProfilesRef = doc(db, "user-profiles", currentUser.uid);
