@@ -22,7 +22,7 @@
   min-height: 374px;
   max-height: 832px;
 
-  border-radius: 4px;
+  /* border-radius: 4px; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -101,7 +101,7 @@
   }
 
   .headline-h1 {
-    font-size: 32px;
+    font-size: 2rem;
 
     position: static;
     color: var(--grey-900);

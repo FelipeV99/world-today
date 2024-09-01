@@ -3,6 +3,7 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
 import { auth } from "../../config/firebase";
+import Button from "../../components/Button/Button";
 
 export default function SignIn() {
   const { state } = useNavigation();
@@ -40,6 +41,10 @@ export default function SignIn() {
           <input className="input-field" name="password" type="password" />
         </div>
         <div className="space-ver-xl"></div>
+        {/* <Button
+          btnText="Log In"
+          isLoading={state === "submitting" ? true : false}
+        /> */}
 
         <button
           className="btn-primary"

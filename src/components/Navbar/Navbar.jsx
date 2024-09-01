@@ -49,7 +49,9 @@ export default function Navbar() {
       </div>
       <div className="nav-right">
         {currentUser ? (
-          <p onClick={handleOnLogout}>Logout</p>
+          <button className="btn-secondary" onClick={handleOnLogout}>
+            Log Out
+          </button>
         ) : (
           <div className="auth-div">
             <button

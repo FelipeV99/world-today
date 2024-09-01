@@ -24,8 +24,9 @@ export default function MoreArticles({ newsArticles }) {
 
   return (
     <div className="more-container">
+      <div className="space-ver-s"></div>
       <div className="line-hor"></div>
-      <div className="space-ver-m"></div>
+      <div className="space-ver-l"></div>
       <h2>You might be interested in</h2>
       <div className="space-ver-s"></div>
       <div className="more-grid">

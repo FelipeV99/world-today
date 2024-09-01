@@ -2,7 +2,6 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../App";
 
 import Comment from "./Comment";
-// import { Form, useNavigation } from "react-router-dom";
 import {
   addDoc,
   arrayRemove,
@@ -16,6 +15,8 @@ import {
   where,
 } from "firebase/firestore";
 import { db } from "../../config/firebase";
+import Button from "../Button/Button";
+
 // const Comments = ({ comments, newsArticleId }) => {
 const Comments = ({ newsArticleId }) => {
   const currentUser = useContext(AuthContext);
@@ -44,8 +45,6 @@ const Comments = ({ newsArticleId }) => {
   useEffect(() => {
     getComments();
   }, []);
-
-  // const { state } = useNavigation();
 
   async function handleOnCreateComment(e) {
     e.preventDefault();
@@ -105,7 +104,7 @@ const Comments = ({ newsArticleId }) => {
     <div>
       <div className="space-ver-m"></div>
       <div className="line-hor"></div>
-      <div className="space-ver-s"></div>
+      <div className="space-ver-l"></div>
       <h2>Comments</h2>
       <div className="space-ver-s"></div>
       {currentUser ? (
@@ -122,14 +121,7 @@ const Comments = ({ newsArticleId }) => {
               <button className="btn-secondary" onClick={handleOnClickCancel}>
                 Cancel
               </button>
-
-              <button
-                type="submit"
-                className="btn-primary"
-                disabled={isSubmittingComment === true ? true : false}
-              >
-                Submit
-              </button>
+              <Button btnText="Submit" isLoading={isSubmittingComment} />
             </div>
           ) : (
             <></>
@@ -157,6 +149,7 @@ const Comments = ({ newsArticleId }) => {
           );
         })}
       </div>
+      {/* <div className="space-ver-l"></div> */}
     </div>
   );
   // return (

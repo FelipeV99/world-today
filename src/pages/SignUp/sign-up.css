@@ -45,7 +45,7 @@
 }
 
 .error-li {
-  font-size: 14px;
+  font-size: 0.875rem;
   color: var(--red-300);
 
   /* padding-top: var(--space-xs); */
@@ -59,7 +59,7 @@
 
   /* padding-right: 0; */
   background-color: var(--red-100);
-  border-radius: var(--border-xxs);
+  /* border-radius: var(--border-xxs); */
 }
 
 .error-li:last-child {

@@ -1,16 +1,12 @@
 /* eslint-disable react/prop-types */
 import "./comments.css";
 
-import {
-  arrayRemove,
-  deleteDoc,
-  doc,
-  getDoc,
-  updateDoc,
-} from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../App";
+import Spinner from "../../assets/spinner.json";
+import Lottie from "react-lottie";
 
 import { usePopper } from "react-popper";
 // import { useNavigate } from "react-router-dom";
@@ -18,6 +14,8 @@ import { usePopper } from "react-popper";
 const Comment = ({ comment, handleOnDeleteComment }) => {
   const [userProfile, setUserProfile] = useState("");
   const [isPopoverVisible, setIsPopoverVisible] = useState(false);
+  const [isDeletingComment, setIsDeletingComment] = useState(false);
+
   const currentUser = useContext(AuthContext);
 
   const [refenceElement, setReferenceElement] = useState();
@@ -25,6 +23,12 @@ const Comment = ({ comment, handleOnDeleteComment }) => {
   const { styles, attributes } = usePopper(refenceElement, popperElement, {
     placement: "top-end",
   });
+
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: Spinner,
+  };
   // const navigate = useNavigate();
 
   //I think this function is slowing down the code a lot, I should probably request the users in the route loader
@@ -52,8 +56,10 @@ const Comment = ({ comment, handleOnDeleteComment }) => {
     // await updateDoc(userProfilesRef, {
     //   comments: arrayRemove(comment.id),
     // });
+    setIsDeletingComment(true);
     await handleOnDeleteComment(comment.id, userProfile.id);
     setIsPopoverVisible(false);
+    setIsDeletingComment(false);
 
     //after deleting it from the db I would need to rerender
     //the coments component, but for that I would need to create
@@ -81,7 +87,7 @@ const Comment = ({ comment, handleOnDeleteComment }) => {
                 })
               }
             />
-            {isPopoverVisible ? (
+            {/* {isPopoverVisible ? (
               <div
                 style={styles.popper}
                 {...attributes.popper}
@@ -90,7 +96,37 @@ const Comment = ({ comment, handleOnDeleteComment }) => {
                 ref={setPopperElement}
               >
                 <p>Delete</p>
+                {isDeletingComment ? (
+                  <Lottie
+                    className="lottie-spinner"
+                    options={defaultOptions}
+                    height={28}
+                    width={28}
+                  />
+                ) : undefined}
               </div>
+            ) : (
+              <></>
+            )} */}
+            {isPopoverVisible ? (
+              <button
+                style={styles.popper}
+                {...attributes.popper}
+                className="delete-popover"
+                onClick={handleOnClickDelete}
+                ref={setPopperElement}
+                disabled={isDeletingComment}
+              >
+                Delete
+                {isDeletingComment ? (
+                  <Lottie
+                    className="lottie-spinner"
+                    options={defaultOptions}
+                    height={28}
+                    width={28}
+                  />
+                ) : undefined}
+              </button>
             ) : (
               <></>
             )}

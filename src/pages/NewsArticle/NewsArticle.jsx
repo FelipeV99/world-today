@@ -37,7 +37,7 @@ export default function NewsArticle() {
   useEffect(() => {
     getRecommendedArticles();
   }, []);
-  console.log("recomended articles!", recommendedArticles);
+  // console.log("recomended articles!", recommendedArticles);
 
   return (
     <div className="news-article-container">

@@ -1,5 +1,5 @@
 .comment-content {
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 500;
 }
 
@@ -15,13 +15,13 @@
 }
 
 .comment-date {
-  font-size: 14px;
+  font-size: 0.875rem;
   color: var(--grey-400);
 }
 
 .comment-username {
   /* font-weight: 700; */
-  font-size: 16px;
+  font-size: 1rem;
   color: var(--grey-800);
 }
 
@@ -29,13 +29,16 @@
   width: 100%;
   border: none;
   background-color: var(--yellow-200);
+  color: var(--grey-800);
+  font-size: 1rem;
+
   resize: none;
 }
-
+/* 
 .comment-textarea {
   border: none;
   color: var(--grey-800);
-}
+} */
 .comment-textarea:focus {
   border: none;
   outline: none;
@@ -48,7 +51,7 @@
   gap: var(--space-xs);
   background-color: var(--yellow-200);
   padding: 16px;
-  border-radius: 4px;
+  /* border-radius: 4px; */
 }
 
 .form-btns {
@@ -62,13 +65,28 @@
 
 .delete-popover {
   position: absolute;
-  padding: var(--space-xxs);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* padding: var(--space-xxs); */
+  height: 28px;
   padding-left: var(--space-xs);
   padding-right: var(--space-xs);
   margin: 4px;
 
   background-color: var(--yellow-100);
   border: 1px solid var(--grey-400);
-  border-radius: 4px;
+  /* border-radius: 4px; */
+  font-size: 1rem;
   cursor: pointer;
+  color: var(--grey-800);
+}
+
+.delete-popover:disabled {
+  color: var(--grey-500);
+  /* background-color: var(--yellow-200); */
+}
+
+.lottie-spinner {
+  position: absolute;
 }
