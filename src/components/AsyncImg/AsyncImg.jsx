@@ -20,7 +20,8 @@ export default function AsyncImg({ src, proportions = 1.5 }) {
       ref={divRef}
       style={imgSrc === "" ? { height: divHeight } : undefined}
     >
-      <img className="img-fit" src={imgSrc} />
+      {/* colocar un alt */}
+      <img className="img-fit" src={imgSrc} alt="" />
     </div>
   );
 }

@@ -7,12 +7,6 @@ import { useContext } from "react";
 import { CurrentComponentContext } from "../../App";
 // import { db } from "../../config/firebase";
 
-// export async function moreArticlesLoader() {
-//   const newsListRef = collection(db, "news");
-//   const q = query(newsListRef, limit(4));
-//   console.log(q);
-// }
-
 export default function MoreArticles({ newsArticles }) {
   const navigate = useNavigate();
   const { setCurrentComponent } = useContext(CurrentComponentContext);

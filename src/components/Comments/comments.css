@@ -51,12 +51,39 @@
   gap: var(--space-xs);
   background-color: var(--yellow-200);
   padding: 16px;
+  view-transition-name: comment-form;
   /* border-radius: 4px; */
+}
+
+::view-transition-new(comment-form) {
+  /* animation-duration: 2s; */
+  /* opacity: 1; */
+  animation: 90ms cubic-bezier(0.4, 0, 1, 1) both no-fade-in;
+  /* animation: 90ms cubic-bezier(0.4, 0, 1, 1) both slide-out; */
 }
 
 .form-btns {
   display: flex;
   gap: var(--space-s);
+  view-transition-name: form-btns;
+}
+
+@keyframes no-fade-in {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out {
+  from {
+    transform: scaleY(1);
+  }
+  to {
+    transform: scaleY(2);
+  }
 }
 
 #dots-delete {

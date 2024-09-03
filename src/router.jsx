@@ -2,7 +2,6 @@ import { createBrowserRouter } from "react-router-dom";
 import Home, { homeLoader } from "./pages/Home/Home";
 import App from "./App";
 import NewsArticle, {
-  newsArticleAction,
   newsArticleLoader,
 } from "./pages/NewsArticle/NewsArticle";
 import Category, { categoryLoader } from "./pages/Category/Category";

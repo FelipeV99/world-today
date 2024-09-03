@@ -9,7 +9,6 @@ import Spinner from "../../assets/spinner.json";
 import Lottie from "react-lottie";
 
 import { usePopper } from "react-popper";
-// import { useNavigate } from "react-router-dom";
 
 const Comment = ({ comment, handleOnDeleteComment }) => {
   const [userProfile, setUserProfile] = useState("");
@@ -29,9 +28,9 @@ const Comment = ({ comment, handleOnDeleteComment }) => {
     autoplay: true,
     animationData: Spinner,
   };
-  // const navigate = useNavigate();
 
   //I think this function is slowing down the code a lot, I should probably request the users in the route loader
+  //podria traer todos los usuarios y aprtir de eso ver cuales son los que necesito viendo con los comentarios
   async function getUserProfile() {
     const userProfileDocRef = doc(db, "user-profiles", comment.userId);
     const userProfileDocSnap = await getDoc(userProfileDocRef);
@@ -42,29 +41,18 @@ const Comment = ({ comment, handleOnDeleteComment }) => {
         id: userProfileDocSnap.id,
       });
     }
-    // console.log()
   }
   useEffect(() => {
     getUserProfile();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  //podria user un reducer para diferentes acciones aqui
   async function handleOnClickDelete() {
-    // await deleteDoc(doc(db, "comments", comment.id));
-    // const userProfilesRef = doc(db, "user-profiles", userProfile.id);
-
-    // await updateDoc(userProfilesRef, {
-    //   comments: arrayRemove(comment.id),
-    // });
     setIsDeletingComment(true);
     await handleOnDeleteComment(comment.id, userProfile.id);
     setIsPopoverVisible(false);
     setIsDeletingComment(false);
-
-    //after deleting it from the db I would need to rerender
-    //the coments component, but for that I would need to create
-    //a state with an array of all comments, and delete it from the
-    //state so that the component rerenders
   }
 
   return (
@@ -87,27 +75,7 @@ const Comment = ({ comment, handleOnDeleteComment }) => {
                 })
               }
             />
-            {/* {isPopoverVisible ? (
-              <div
-                style={styles.popper}
-                {...attributes.popper}
-                className="delete-popover"
-                onClick={handleOnClickDelete}
-                ref={setPopperElement}
-              >
-                <p>Delete</p>
-                {isDeletingComment ? (
-                  <Lottie
-                    className="lottie-spinner"
-                    options={defaultOptions}
-                    height={28}
-                    width={28}
-                  />
-                ) : undefined}
-              </div>
-            ) : (
-              <></>
-            )} */}
+
             {isPopoverVisible ? (
               <button
                 style={styles.popper}
@@ -135,7 +103,6 @@ const Comment = ({ comment, handleOnDeleteComment }) => {
           <></>
         )}
       </div>
-
       <div className="space-ver-xxs"></div>
       <p className="comment-content">{comment.content}</p>
     </div>

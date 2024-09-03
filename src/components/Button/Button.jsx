@@ -8,8 +8,8 @@ const Button = ({ isLoading, btnText }) => {
   useEffect(() => {
     setIsSubmitting(isLoading);
   }, [isLoading]);
-  console.log("is submitting?", isSubmitting);
-  console.log("is loading?:", isLoading);
+  // console.log("is submitting?", isSubmitting);
+  // console.log("is loading?:", isLoading);
   const defaultOptions = {
     loop: true,
     autoplay: true,

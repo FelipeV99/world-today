@@ -3,20 +3,18 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
 import { auth } from "../../config/firebase";
-import Button from "../../components/Button/Button";
+// import Button from "../../components/Button/Button";
 
 export default function SignIn() {
   const { state } = useNavigation();
-
-  const error = useActionData();
-  // console.log(error);
+  const error = useActionData() || "";
 
   return (
     <div className="signin-container">
       <Form method="post" className="signin-form">
         <h2>Log In</h2>
         <div className="space-ver-m"></div>
-        {error !== "" && error ? (
+        {error !== "" ? (
           <>
             <ul className="errors-ul">
               <li className="error-li">{error}</li>
@@ -63,14 +61,11 @@ export async function signInAction({ request }) {
   const password = formData.get("password");
   let errorMessage = "";
   await signInWithEmailAndPassword(auth, email, password).catch((e) => {
-    console.log(typeof e.message);
+    // console.log(typeof e.message);
     // const eMessage = e.message || "";
-
     if (e.message.includes("invalid-email")) {
-      // console.log(e.message);
       errorMessage = "Enter a valid email address";
     } else {
-      // console.log(e.message);
       errorMessage = "Wrong email or password";
     }
   });

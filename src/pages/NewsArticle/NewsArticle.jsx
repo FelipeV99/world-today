@@ -16,6 +16,7 @@ import { useEffect, useState } from "react";
 
 export default function NewsArticle() {
   const { selectedArticle } = useLoaderData();
+
   const [recommendedArticles, setRecommendedArticles] = useState();
 
   async function getRecommendedArticles() {
@@ -36,8 +37,8 @@ export default function NewsArticle() {
   }
   useEffect(() => {
     getRecommendedArticles();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  // console.log("recomended articles!", recommendedArticles);
 
   return (
     <div className="news-article-container">

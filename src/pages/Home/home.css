@@ -30,6 +30,9 @@
   /* padding: 24px; */
   cursor: pointer;
 }
+.secondary-headlines-line:last-child {
+  display: none;
+}
 
 .headline-h1 {
   position: absolute;

@@ -6,6 +6,11 @@
   align-items: center;
   padding-top: var(--space-xl);
   padding-bottom: var(--space-xl);
+  view-transition-name: signup-container;
+}
+
+::view-transition-new(signup-container) {
+  animation-duration: 3s;
 }
 
 .signup-form {
@@ -32,7 +37,16 @@
   align-items: center;
   padding-top: var(--space-xl);
   padding-bottom: var(--space-xl);
+  view-transition-name: signin-container;
 }
+
+::view-transition-new(signin-container) {
+  animation-duration: 2s;
+}
+
+/* ::view-transition-old(signin-container) {
+  animation-duration: 2s;
+} */
 
 .signin-form {
   width: 32%;

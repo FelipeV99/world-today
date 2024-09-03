@@ -18,6 +18,7 @@ import {
 import { db } from "../../config/firebase";
 import Button from "../Button/Button";
 import { format } from "date-fns";
+import { flushSync } from "react-dom";
 
 // const Comments = ({ comments, newsArticleId }) => {
 const Comments = ({ newsArticleId }) => {
@@ -47,6 +48,7 @@ const Comments = ({ newsArticleId }) => {
   }
   useEffect(() => {
     getComments();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function handleOnCreateComment(e) {
@@ -63,7 +65,6 @@ const Comments = ({ newsArticleId }) => {
       newsArticleId: newsArticleId,
       formatDate: format(new Date(), "yyyy-L-d H:m:s"),
     });
-    // console.log(commentDocRef.data());
     const userProfilesRef = doc(db, "user-profiles", currentUser.uid);
 
     await updateDoc(userProfilesRef, {
@@ -88,7 +89,13 @@ const Comments = ({ newsArticleId }) => {
   function handleOnClickCancel(e) {
     e.preventDefault();
     commentInputRef.current.value = "";
-    setIsTextareaInFocus(false);
+    if (document.startViewTransition) {
+      document.startViewTransition(() => {
+        flushSync(() => setIsTextareaInFocus(false));
+      });
+    } else {
+      setIsTextareaInFocus(false);
+    }
   }
 
   async function handleOnDeleteComment(commentId, userProfileId) {
@@ -118,7 +125,15 @@ const Comments = ({ newsArticleId }) => {
             name="content"
             ref={commentInputRef}
             placeholder="write something..."
-            onFocusCapture={() => setIsTextareaInFocus(true)}
+            onFocusCapture={() => {
+              if (document.startViewTransition) {
+                document.startViewTransition(() => {
+                  flushSync(() => setIsTextareaInFocus(true));
+                });
+              } else {
+                setIsTextareaInFocus(true);
+              }
+            }}
           />
           {isTextareaInFocus ? (
             <div className="form-btns">
@@ -153,102 +168,8 @@ const Comments = ({ newsArticleId }) => {
           );
         })}
       </div>
-      {/* <div className="space-ver-l"></div> */}
     </div>
   );
-  // return (
-  //   <div>
-  //     <div className="space-ver-m"></div>
-
-  //     <div className="line-hor"></div>
-  //     <div className="space-ver-s"></div>
-  //     <h2>Comments</h2>
-
-  //     <div className="space-ver-s"></div>
-  //     {currentUser ? (
-  //       <form className="comment-form" onSubmit={handleOnCreateComment}>
-  //         <textarea
-  //           className="comment-textarea"
-  //           name="content"
-  //           ref={commentInputRef}
-  //           placeholder="write something..."
-  //           onFocusCapture={() => setIsTextareaInFocus(true)}
-  //         />
-  //         {/* <input
-  //           style={{ display: "none" }}
-  //           name="method"
-  //           type="text"
-  //           defaultValue={formMethod}
-  //         /> */}
-  //         <input
-  //           style={{ display: "none" }}
-  //           name="userId"
-  //           type="text"
-  //           defaultValue={currentUser.uid}
-  //         />
-  //         <input
-  //           style={{ display: "none" }}
-  //           name="newsArticleId"
-  //           type="text"
-  //           defaultValue={newsArticleId}
-  //         />
-  //         {/* <input
-  //           type="text"
-  //           placeholder="wirte a comment"
-  //           ref={commentInputRef}
-  //         /> */}
-  //         {isTextareaInFocus ? (
-  //           <div className="form-btns">
-  //             <button className="btn-secondary" onClick={handleOnClickCancel}>
-  //               Cancel
-  //             </button>
-
-  //             <button
-  //               type="submit"
-  //               className="btn-primary"
-  //               disabled={isSubmittingComment === true ? true : false}
-  //             >
-  //               Submit
-  //             </button>
-  //           </div>
-  //         ) : (
-  //           <></>
-  //         )}
-  //       </form>
-  //     ) : (
-  //       <p className="grey-600">Please sign in to comment</p>
-  //     )}
-  //     <div className="space-ver-s"></div>
-
-  //     <div className="comments-container" ref={commentsDivRef}>
-  //       {createdComments.map((comment) => {
-  //         return (
-  //           <div key={comment.id}>
-  //             <Comment comment={comment} />
-  //             {comment !== comments[comments.length - 1] ? (
-  //               <div className="space-ver-l"></div>
-  //             ) : (
-  //               <></>
-  //             )}
-  //           </div>
-  //         );
-  //       })}
-  //       {comments.map((comment) => {
-  //         return (
-  //           <div key={comment.id}>
-  //             <Comment comment={comment} />
-  //             {comment !== comments[comments.length - 1] ? (
-  //               <div className="space-ver-l"></div>
-  //             ) : (
-  //               <></>
-  //             )}
-  //           </div>
-  //         );
-  //       })}
-  //     </div>
-  //     {/* <Form method=""></Form> */}
-  //   </div>
-  // );
 };
 
 export default Comments;

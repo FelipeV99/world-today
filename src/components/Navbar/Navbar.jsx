@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext, CurrentComponentContext } from "../../App";
 import { signOut } from "firebase/auth";
 import { auth } from "../../config/firebase";
+import { flushSync } from "react-dom";
 
 export default function Navbar() {
   const { setCurrentComponent } = useContext(CurrentComponentContext);
@@ -56,13 +57,30 @@ export default function Navbar() {
           <div className="auth-div">
             <button
               className="btn-secondary"
-              onClick={() => navigate("/signin")}
+              onClick={() => {
+                if (document.startViewTransition) {
+                  document.startViewTransition(() => {
+                    navigate("/signin");
+                  });
+                } else {
+                  navigate("/signin");
+                }
+              }}
             >
               Log In
             </button>
             <button
               className="btn-primary btn-thin"
-              onClick={() => navigate("/signup")}
+              onClick={() => {
+                if (document.startViewTransition) {
+                  console.log("start transition!");
+                  document.startViewTransition(() => {
+                    navigate("/signup");
+                  });
+                } else {
+                  navigate("/signup");
+                }
+              }}
             >
               Sign Up
             </button>

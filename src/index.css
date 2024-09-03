@@ -116,12 +116,16 @@ label {
 .space-ver-xl {
   height: var(--space-xl);
   flex-shrink: 0;
+  @media (max-width: 480px) {
+    --space-xl: 48px;
+  }
 }
 
 .line-hor {
   width: 100%;
-  height: 1px;
-  background-color: var(--grey-400);
+  /* height: 1px; */
+  border-bottom: var(--grey-400) solid 1px;
+  /* background-color: var(--grey-400); */
 }
 
 .img-fit {
@@ -241,7 +245,7 @@ input.error {
 }
 
 .asterisk {
-  font-size: 18px;
+  font-size: 1.125rem;
   color: var(--grey-500);
 }
 
@@ -262,8 +266,15 @@ input.error {
 }
 
 @media (max-width: 480px) {
+  :root {
+    --space-l: 16px;
+  }
   #root {
     padding-left: var(--space-xs);
     padding-right: var(--space-xs);
   }
 }
+
+/* ::view-transition-new(root) {
+  animation-duration: 0.8s;
+} */

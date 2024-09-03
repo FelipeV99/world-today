@@ -5,9 +5,10 @@ import { collection, getDocs } from "firebase/firestore";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import CardTwo from "../../components/CardTwo/CardTwo";
 import CardOne from "../../components/CardOne/CardOne";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { CurrentComponentContext } from "../../App";
 import AsyncImg from "../../components/AsyncImg/AsyncImg";
+import { flushSync } from "react-dom";
 // import CardOne from "../../components/CardOne/CardOne";
 
 export async function homeLoader() {
@@ -34,6 +35,10 @@ export default function Home() {
 
   const { setCurrentComponent } = useContext(CurrentComponentContext);
   const navigate = useNavigate();
+
+  // useEffect(()=>{
+  //   document.startViewTransition(()=> )
+  // }, [])
 
   function handleOnCklickHeadline(headlineId) {
     setCurrentComponent("news");
@@ -66,7 +71,7 @@ export default function Home() {
                   categories={headline.categories}
                   subtitle={headline.subtitle}
                 />
-                {headline != teriaryHeadlines[teriaryHeadlines.length - 1] ? (
+                {headline !== teriaryHeadlines[teriaryHeadlines.length - 1] ? (
                   <>
                     <div className="space-ver-s"></div>
                     <div className="line-hor"></div>
@@ -90,7 +95,7 @@ export default function Home() {
               title={headline.title}
               subtitle={headline.subtitle}
             />
-            {headline != secondaryHeadlines[secondaryHeadlines.length - 1] ? (
+            {headline !== secondaryHeadlines[secondaryHeadlines.length - 1] ? (
               <>
                 <div className="space-ver-m"></div>
                 <div className="line-hor"></div>
@@ -99,6 +104,18 @@ export default function Home() {
             ) : (
               <></>
             )}
+            {/* <div
+              onClick={(ev) => {
+                ev.preventDefault();
+                document.startViewTransition(() => {
+                  flushSync(() => {
+                    navigate("/sections/Health");
+                  });
+                });
+              }}
+            >
+              on hood
+            </div> */}
           </div>
         ))}
       </div>
