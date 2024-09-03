@@ -1,37 +1,65 @@
 import "./home.css";
 
 import { db } from "../../config/firebase";
-import { collection, getDocs } from "firebase/firestore";
+import {
+  collection,
+  getDoc,
+  getDocs,
+  limit,
+  query,
+  where,
+} from "firebase/firestore";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import CardTwo from "../../components/CardTwo/CardTwo";
 import CardOne from "../../components/CardOne/CardOne";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { CurrentComponentContext } from "../../App";
 import AsyncImg from "../../components/AsyncImg/AsyncImg";
-import { flushSync } from "react-dom";
 // import CardOne from "../../components/CardOne/CardOne";
 
 export async function homeLoader() {
   const newsListRef = collection(db, "news");
-
-  const data = await getDocs(newsListRef);
-  const newsList = data.docs.map((doc) => {
-    return { ...doc.data(), id: doc.id };
+  //get main headline
+  const q = query(
+    newsListRef,
+    where("newsType", "==", "main headline"),
+    limit(1)
+  );
+  const querySnapshot = await getDocs(q);
+  const mainHeadline = {
+    ...querySnapshot.docs[0].data(),
+    id: querySnapshot.docs[0].id,
+  };
+  //get secondary articles
+  const qSH = query(
+    newsListRef,
+    where("newsType", "==", "secondary headline"),
+    limit(5)
+  );
+  const querySnapshotSH = await getDocs(qSH);
+  const secondaryHeadlines = [];
+  querySnapshotSH.forEach((doc) => {
+    secondaryHeadlines.push({ ...doc.data(), id: doc.id });
   });
-  return newsList;
+  //get tertiary articles
+
+  const qTH = query(
+    newsListRef,
+    where("newsType", "==", "tertiary headline"),
+    limit(3)
+  );
+  const querySnapshotTH = await getDocs(qTH);
+  const tertiaryHeadlines = [];
+  querySnapshotTH.forEach((doc) => {
+    tertiaryHeadlines.push({ ...doc.data(), id: doc.id });
+  });
+
+  return { mainHeadline, secondaryHeadlines, tertiaryHeadlines };
 }
 
 export default function Home() {
-  const newsList = useLoaderData();
-  const headline = newsList.filter(
-    (news) => news.newsType === "main headline"
-  )[0];
-  const secondaryHeadlines = newsList.filter(
-    (news) => news.newsType === "secondary headline"
-  );
-  const teriaryHeadlines = newsList.filter(
-    (news) => news.newsType === "tertiary headline"
-  );
+  const { mainHeadline, secondaryHeadlines, tertiaryHeadlines } =
+    useLoaderData();
 
   const { setCurrentComponent } = useContext(CurrentComponentContext);
   const navigate = useNavigate();
@@ -50,18 +78,19 @@ export default function Home() {
       <div className="home-left">
         <div
           className="main-headline"
-          onClick={() => handleOnCklickHeadline(headline.id)}
+          onClick={() => handleOnCklickHeadline(mainHeadline.id)}
         >
           <AsyncImg
             src="https://firebasestorage.googleapis.com/v0/b/news-5462b.appspot.com/o/News%20Covers%2Fstock%20surge%20cut.png?alt=media&token=04844419-1d47-4e78-8240-255667c245cb"
             proportions={2}
           />
-          <h1 className="grey-100 headline-h1">{headline.title}</h1>
-          <p className="headline-subtitle">{headline.subtitle}</p>
+          <h1 className="grey-100 headline-h1">{mainHeadline.title}</h1>
+          <p className="headline-subtitle">{mainHeadline.subtitle}</p>
         </div>
         <div className="space-ver-m"></div>
+
         <div className="other-news-left">
-          {teriaryHeadlines.map((headline) => {
+          {tertiaryHeadlines.map((headline) => {
             return (
               <div key={headline.id}>
                 <CardOne
@@ -71,7 +100,8 @@ export default function Home() {
                   categories={headline.categories}
                   subtitle={headline.subtitle}
                 />
-                {headline !== teriaryHeadlines[teriaryHeadlines.length - 1] ? (
+                {headline !==
+                tertiaryHeadlines[tertiaryHeadlines.length - 1] ? (
                   <>
                     <div className="space-ver-s"></div>
                     <div className="line-hor"></div>
@@ -104,18 +134,6 @@ export default function Home() {
             ) : (
               <></>
             )}
-            {/* <div
-              onClick={(ev) => {
-                ev.preventDefault();
-                document.startViewTransition(() => {
-                  flushSync(() => {
-                    navigate("/sections/Health");
-                  });
-                });
-              }}
-            >
-              on hood
-            </div> */}
           </div>
         ))}
       </div>

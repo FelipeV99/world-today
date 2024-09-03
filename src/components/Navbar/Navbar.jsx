@@ -73,7 +73,7 @@ export default function Navbar() {
               className="btn-primary btn-thin"
               onClick={() => {
                 if (document.startViewTransition) {
-                  console.log("start transition!");
+                  // console.log("start transition!");
                   document.startViewTransition(() => {
                     navigate("/signup");
                   });

@@ -23,17 +23,17 @@ export default function NewsArticle() {
     const newsListRef = collection(db, "news");
     const q = query(newsListRef, limit(5));
     const querySnapshot = await getDocs(q);
-    const fourNewsArticles = [];
+    const moreArticles = [];
     querySnapshot.forEach((doc) => {
       if (doc.id !== selectedArticle.id) {
-        fourNewsArticles.push({ ...doc.data(), id: doc.id });
+        moreArticles.push({ ...doc.data(), id: doc.id });
       }
-      if (fourNewsArticles.length > 4) {
-        fourNewsArticles.pop();
+      if (moreArticles.length > 4) {
+        moreArticles.pop();
       }
     });
 
-    setRecommendedArticles(fourNewsArticles);
+    setRecommendedArticles(moreArticles);
   }
   useEffect(() => {
     getRecommendedArticles();
