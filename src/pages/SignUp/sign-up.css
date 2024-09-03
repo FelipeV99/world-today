@@ -10,7 +10,7 @@
 }
 
 ::view-transition-new(signup-container) {
-  animation-duration: 3s;
+  animation-duration: 1s;
 }
 
 .signup-form {
@@ -41,7 +41,7 @@
 }
 
 ::view-transition-new(signin-container) {
-  animation-duration: 2s;
+  animation-duration: 1s;
 }
 
 /* ::view-transition-old(signin-container) {
