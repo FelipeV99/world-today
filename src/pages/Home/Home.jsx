@@ -41,8 +41,8 @@ export async function homeLoader() {
   querySnapshotSH.forEach((doc) => {
     secondaryHeadlines.push({ ...doc.data(), id: doc.id });
   });
-  //get tertiary articles
 
+  //get tertiary articles
   const qTH = query(
     newsListRef,
     where("newsType", "==", "tertiary headline"),

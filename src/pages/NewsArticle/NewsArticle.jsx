@@ -66,43 +66,13 @@ export default function NewsArticle() {
         </div>
       ))}
       <Comments newsArticleId={selectedArticle.id} />
-      {recommendedArticles ? (
-        <MoreArticles newsArticles={recommendedArticles} />
-      ) : (
-        <>Loading...</>
-      )}
+
+      <MoreArticles currentArticleId={selectedArticle.id} />
     </div>
   );
 }
 
 export async function newsArticleLoader({ params }) {
-  //get 4 newsarticles for recommendation
-  // const newsListRef = collection(db, "news");
-  // const q = query(newsListRef, limit(5));
-  // const querySnapshot = await getDocs(q);
-  // const fourNewsArticles = [];
-  // querySnapshot.forEach((doc) => {
-  //   if (doc.id !== params.newsId) {
-  //     fourNewsArticles.push({ ...doc.data(), id: doc.id });
-  //   }
-  //   if (fourNewsArticles.length > 4) {
-  //     fourNewsArticles.pop();
-  //   }
-  // });
-
-  //get all comments of current article
-  // const commentsRef = collection(db, "comments");
-  // const commentsQ = query(
-  //   commentsRef,
-  //   where("newsArticleId", "==", params.newsId)
-  // );
-  // const commentsQuerySnap = await getDocs(commentsQ);
-  // const comments = [];
-
-  // commentsQuerySnap.forEach((doc) => {
-  //   comments.push({ ...doc.data(), id: doc.id });
-  // });
-
   //get the current news Article
   const docRef = doc(db, "news", params.newsId);
   const docSnap = await getDoc(docRef);
@@ -114,48 +84,3 @@ export async function newsArticleLoader({ params }) {
     throw "error";
   }
 }
-//create a new comment and modify the comments array in the users collection
-// export async function newsArticleAction({ request }) {
-//   const formData = await request.formData();
-//   const userId = formData.get("userId");
-//   const content = formData.get("content");
-//   const newsArticleId = formData.get("newsArticleId");
-//   // const formMethod = formData.get("method") || "post";
-//   // console.log("form method", formMethod);
-//   const splitDate = new Date().toDateString().split(" ");
-//   const formattedDate = `${splitDate[1]} ${splitDate[2]}, ${splitDate[3]}`;
-
-//   // if (formMethod === "post") {
-//   const commentsRef = collection(db, "comments");
-//   const commentDocRef = await addDoc(commentsRef, {
-//     userId: userId,
-//     content: content,
-//     date: formattedDate,
-//     newsArticleId: newsArticleId,
-//   });
-//   // console.log(commentDocRef.data());
-//   const userProfilesRef = doc(db, "user-profiles", userId);
-
-//   await updateDoc(userProfilesRef, {
-//     comments: arrayUnion(commentDocRef.id),
-//   });
-
-//   // const comment = {
-//   //   id: commentDocRef.id,
-//   //   date: formattedDate,
-//   //   content: content,
-//   //   newsArticleId: newsArticleId,
-//   //   userId: userId,
-//   // };
-
-//   return "success";
-//   // }
-//   // else if(formMethod === "put"){
-
-//   //   const userProfilesRef = doc(db, "comments", userId);
-
-//   //   await updateDoc(userProfilesRef, );
-
-//   //   return "success";
-//   // }
-// }
