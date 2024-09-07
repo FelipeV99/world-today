@@ -26,25 +26,22 @@ export default function AsyncImg({
     setIsHover(isMouseOver);
   }, [isMouseOver]);
 
-  useLayoutEffect(() => {
-    function updateImgHeight() {
-      setDivHeight(divRef.current.clientWidth / proportions);
-    }
-    window.addEventListener("resize", () => {
-      updateImgHeight();
-    });
-    return () => {
-      window.removeEventListener("resize", () => {
-        updateImgHeight();
-      });
-    };
-  }, []);
+  // useLayoutEffect(() => {
+  //   // console.log("fucking current", divRef.current);
+  //   function updateImgHeight() {
+  //     setDivHeight(divRef.current.clientWidth / proportions);
+  //   }
+  //   window.addEventListener("resize", updateImgHeight);
+  //   return () => {
+  //     window.removeEventListener("resize", updateImgHeight);
+  //   };
+  // }, []);
 
   return (
     <div
       className={imgSrc === "" ? "skeleton img-container" : "img-container"}
       ref={divRef}
-      style={imgSrc === "" ? { height: divHeight } : { height: divHeight }}
+      style={imgSrc === "" ? { height: divHeight } : undefined}
     >
       <div
         className={
