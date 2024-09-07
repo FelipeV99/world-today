@@ -1,0 +1,25 @@
+.img-container {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  /* position: relative; */
+}
+
+.img-overlay {
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(14, 14, 14, 0.074);
+  /* transform: ; */
+  transition: all 0.2s ease-in-out;
+}
+
+.img-overlay-trans {
+  display: none;
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0);
+  /* transform: ; */
+  transition: all 0.2s ease-in-out;
+}

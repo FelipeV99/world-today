@@ -1,9 +1,16 @@
 /* eslint-disable react/prop-types */
+import "./async-img.css";
 import { useEffect, useRef, useState } from "react";
 
-export default function AsyncImg({ src, proportions = 1.5 }) {
+export default function AsyncImg({
+  src,
+  proportions = 1.5,
+  clickableImg = false,
+  isMouseOver,
+}) {
   const [imgSrc, setImgSrc] = useState("");
   const [divHeight, setDivHeight] = useState(0);
+  const [isHover, setIsHover] = useState(isMouseOver);
   const divRef = useRef();
 
   useEffect(() => {
@@ -14,14 +21,31 @@ export default function AsyncImg({ src, proportions = 1.5 }) {
       setImgSrc(img.src);
     };
   }, []);
+
+  useEffect(() => {
+    setIsHover(isMouseOver);
+  }, [isMouseOver]);
+
   return (
     <div
       className={imgSrc === "" ? "skeleton img-container" : "img-container"}
       ref={divRef}
-      style={imgSrc === "" ? { height: divHeight } : undefined}
+      style={imgSrc === "" ? { height: divHeight } : { height: divHeight }}
     >
+      <div
+        className={
+          isHover && clickableImg ? "img-overlay" : "img-overlay-trans"
+        }
+      ></div>
+      {isHover && clickableImg ? (
+        <div className="img-overlay"></div>
+      ) : undefined}
       {/* colocar un alt */}
-      <img className="img-fit" src={imgSrc} alt="" />
+      <img
+        className={`img-fit ${isHover && clickableImg ? "img-focus" : ""}`}
+        src={imgSrc}
+        alt=""
+      />
     </div>
   );
 }

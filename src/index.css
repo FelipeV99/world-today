@@ -42,7 +42,7 @@ body {
 }
 
 h1 {
-  font-size: 2.75rem;
+  font-size: 2rem;
   font-weight: 600;
   color: var(--grey-900);
 }
@@ -132,6 +132,16 @@ label {
   width: 100%;
 }
 
+.img-focus {
+  transform: scale(1.05);
+  transition: 0.2s ease-in-out;
+}
+
+.img-fit:not(.img-focus) {
+  transform: scale(1);
+  transition: 0.2s ease-in-out;
+}
+
 .btn-primary {
   display: flex;
   justify-content: center;
@@ -159,6 +169,16 @@ label {
   background-color: var(--grey-600);
 }
 
+.btn-primary:hover {
+  background-color: var(--grey-800);
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-primary:not(:hover) {
+  background-color: var(--grey-900);
+  transition: all 0.2s ease-in-out;
+}
+
 /* .btn-primary-loading {
   display: flex;
 } */
@@ -169,11 +189,57 @@ label {
   font-size: 1rem;
   color: var(--grey-700);
   font-weight: 500;
+  height: 40px;
   cursor: pointer;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.btn-secondary:hover {
+  background-color: var(--yellow-300);
+  color: var(--grey-800);
+  transition: all 0.2s ease-in-out;
+  /* border-bottom: var(--grey-700) 2px solid; */
+}
+
+.btn-secondary:not(:hover) {
+  background-color: transparent;
+  color: var(--grey-700);
+  transition: all 0.2s ease-in-out;
+  /* border-bottom: var(--grey-700) 2px solid; */
 }
 
 .btn-thin {
   font-size: 1rem;
+}
+
+.news-tag-block {
+  width: min-content;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.news-tag-block > p {
+  font-weight: 500;
+  color: var(--yellow-200);
+}
+
+.Politics-tag {
+  background-color: #dd3b3b;
+}
+
+.Economy-tag {
+  background-color: #d39c1c;
+}
+
+.Technology-tag {
+  background-color: #3da5c1;
+}
+
+.Environment-tag {
+  background-color: #17ae58;
 }
 
 #root {

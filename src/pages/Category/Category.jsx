@@ -3,9 +3,10 @@ import "./category.css";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import { useLoaderData, useNavigate, useParams } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CurrentComponentContext } from "../../App";
 import AsyncImg from "../../components/AsyncImg/AsyncImg";
+import CardFour from "../../components/CardFour/CardFour";
 
 export async function categoryLoader({ params }) {
   const newsListRef = collection(db, "news");
@@ -19,7 +20,7 @@ export async function categoryLoader({ params }) {
   querySnapshot.forEach((doc) =>
     categoryArticles.push({ ...doc.data(), id: doc.id })
   );
-  if (categoryArticles.length == 0) {
+  if (categoryArticles.length === 0) {
     throw "error";
   }
   return categoryArticles;
@@ -28,17 +29,19 @@ export async function categoryLoader({ params }) {
 export default function Category() {
   const categoryArticles = useLoaderData();
   const params = useParams();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const { setCurrentComponent } = useContext(CurrentComponentContext);
+  // const [isHover, setIsHover] = useState(false);
+
+  // const { setCurrentComponent } = useContext(CurrentComponentContext);
   //   if (currentComponent === "") {
   //     setCurrentComponent("category");
   //   }
 
-  function handleOnClickCard(articleId) {
-    setCurrentComponent("news");
-    navigate("/news/" + articleId);
-  }
+  // function handleOnClickCard(articleId) {
+  //   setCurrentComponent("news");
+  //   navigate("/news/" + articleId);
+  // }
 
   return (
     <div className="category-container">
@@ -47,20 +50,32 @@ export default function Category() {
       <div className="category-grid">
         {categoryArticles.map((article) => {
           return (
-            <div
-              className="card-four"
+            <CardFour
               key={article.id}
-              //   onClick={() => navigate("/news/" + article.id)}
-              onClick={() => handleOnClickCard(article.id)}
-            >
-              {/* <img className="img-fit" src={article.imgUrl} /> */}
-              <AsyncImg src={article.imgUrl} />
-              <div className="space-ver-s"></div>
-              <h2>{article.title}</h2>
-              <div className="space-ver-xs"></div>
+              id={article.id}
+              imgUrl={article.imgUrl}
+              title={article.title}
+              subtitle={article.subtitle}
+            />
+            // <div
+            //   className="card-four"
+            //   key={article.id}
+            //   //   onClick={() => navigate("/news/" + article.id)}
+            //   onClick={() => handleOnClickCard(article.id)}
+            //   // onMouseEnter={() => setIsHover(true)}
+            //   // onMouseLeave={() => setIsHover(false)}
+            // >
+            //   <AsyncImg
+            //     src={article.imgUrl}
+            //     // clickableImg={true}
+            //     // isMouseOver={isHover}
+            //   />
+            //   <div className="space-ver-s"></div>
+            //   <h2>{article.title}</h2>
+            //   <div className="space-ver-xs"></div>
 
-              <p>{article.subtitle}</p>
-            </div>
+            //   <p>{article.subtitle}</p>
+            // </div>
           );
         })}
       </div>

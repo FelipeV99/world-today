@@ -1,4 +1,6 @@
 /* eslint-disable react/prop-types */
+import "./input-field.css";
+
 export default function InputField({ error = false, name, type }) {
   return (
     <div className="input-group">

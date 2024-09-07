@@ -1,44 +1,13 @@
 import "./news-article.css";
-import {
-  collection,
-  doc,
-  getDoc,
-  limit,
-  query,
-  getDocs,
-} from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import { useLoaderData } from "react-router-dom";
 import MoreArticles from "../../components/MoreArticles/MoreArticles";
 import AsyncImg from "../../components/AsyncImg/AsyncImg";
 import Comments from "../../components/Comments/Comments";
-import { useEffect, useState } from "react";
 
 export default function NewsArticle() {
   const { selectedArticle } = useLoaderData();
-
-  const [recommendedArticles, setRecommendedArticles] = useState();
-
-  async function getRecommendedArticles() {
-    const newsListRef = collection(db, "news");
-    const q = query(newsListRef, limit(5));
-    const querySnapshot = await getDocs(q);
-    const moreArticles = [];
-    querySnapshot.forEach((doc) => {
-      if (doc.id !== selectedArticle.id) {
-        moreArticles.push({ ...doc.data(), id: doc.id });
-      }
-      if (moreArticles.length > 4) {
-        moreArticles.pop();
-      }
-    });
-
-    setRecommendedArticles(moreArticles);
-  }
-  useEffect(() => {
-    getRecommendedArticles();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <div className="news-article-container">

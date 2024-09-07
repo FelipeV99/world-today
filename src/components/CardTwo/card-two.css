@@ -4,4 +4,27 @@
   flex-direction: column;
   gap: var(--space-xs);
   cursor: pointer;
+  /* view-transition-name: card-two; */
 }
+/* 
+.card-two-hover > h2 {
+  color: var(--grey-600);
+} */
+
+/* .card-two-title {
+  view-transition-name: card-two-title;
+}
+
+::view-transition-new(card-two-title) {
+  animation-duration: 2s;
+} */
+
+.card-two-title-hover {
+  color: var(--grey-600);
+  transition: all 0.2s ease-in-out;
+  /* view-transition-name: card-two-title-hover; */
+}
+
+/* ::view-transition-new(card-two-title-hover) {
+  animation-duration: 0.2s;
+} */

@@ -6,6 +6,12 @@
   cursor: pointer;
 }
 
+.card-one-title-hover {
+  /* text-decoration: underline; */
+  color: var(--grey-600);
+  transition: all 0.2s ease-in-out;
+}
+
 .card-one-left {
   display: flex;
   /* height: 100%; */

@@ -18,6 +18,12 @@
 
 .nav-optn {
   font-size: 1rem;
+  font-weight: 500;
+  color: var(--grey-700);
+}
+
+.nav-optn:visited {
+  color: var(--grey-700);
 }
 
 .auth-div {
