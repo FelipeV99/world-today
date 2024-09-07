@@ -1,7 +1,14 @@
 import "./home.css";
 
 import { db } from "../../config/firebase";
-import { collection, getDocs, limit, query, where } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  limit,
+  orderBy,
+  query,
+  where,
+} from "firebase/firestore";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import CardTwo from "../../components/CardTwo/CardTwo";
 import CardOne from "../../components/CardOne/CardOne";
@@ -103,41 +110,48 @@ export default function Home() {
 }
 
 export async function homeLoader() {
-  const newsListRef = collection(db, "news");
-  //get main headline
-  const q = query(
-    newsListRef,
-    where("newsType", "==", "main headline"),
-    limit(1)
-  );
-  const querySnapshot = await getDocs(q);
-  const mainHeadline = {
-    ...querySnapshot.docs[0].data(),
-    id: querySnapshot.docs[0].id,
-  };
-  //get secondary articles
-  const qSH = query(
-    newsListRef,
-    where("newsType", "==", "secondary headline"),
-    limit(5)
-  );
-  const querySnapshotSH = await getDocs(qSH);
-  const secondaryHeadlines = [];
-  querySnapshotSH.forEach((doc) => {
-    secondaryHeadlines.push({ ...doc.data(), id: doc.id });
-  });
+  try {
+    const newsListRef = collection(db, "news");
+    //get main headline
+    const q = query(
+      newsListRef,
+      where("newsType", "==", "main headline"),
+      limit(1),
+      orderBy("formatDate", "desc")
+    );
+    const querySnapshot = await getDocs(q);
+    const mainHeadline = {
+      ...querySnapshot.docs[0].data(),
+      id: querySnapshot.docs[0].id,
+    };
+    //get secondary articles
+    const qSH = query(
+      newsListRef,
+      where("newsType", "==", "secondary headline"),
+      limit(5),
+      orderBy("formatDate", "desc")
+    );
+    const querySnapshotSH = await getDocs(qSH);
+    const secondaryHeadlines = [];
+    querySnapshotSH.forEach((doc) => {
+      secondaryHeadlines.push({ ...doc.data(), id: doc.id });
+    });
 
-  //get tertiary articles
-  const qTH = query(
-    newsListRef,
-    where("newsType", "==", "tertiary headline"),
-    limit(3)
-  );
-  const querySnapshotTH = await getDocs(qTH);
-  const tertiaryHeadlines = [];
-  querySnapshotTH.forEach((doc) => {
-    tertiaryHeadlines.push({ ...doc.data(), id: doc.id });
-  });
+    //get tertiary articles
+    const qTH = query(
+      newsListRef,
+      where("newsType", "==", "tertiary headline"),
+      limit(3),
+      orderBy("formatDate", "desc")
+    );
+    const querySnapshotTH = await getDocs(qTH);
+    const tertiaryHeadlines = [];
+    querySnapshotTH.forEach((doc) => {
+      tertiaryHeadlines.push({ ...doc.data(), id: doc.id });
+    });
 
-  return { mainHeadline, secondaryHeadlines, tertiaryHeadlines };
+    return { mainHeadline, secondaryHeadlines, tertiaryHeadlines };
+  } catch (error) {
+    console.log(error);
+  }
 }

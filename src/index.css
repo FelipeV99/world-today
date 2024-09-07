@@ -39,6 +39,7 @@
 
 body {
   background-color: var(--yellow-100);
+  overflow-x: hidden;
 }
 
 h1 {

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import "./async-img.css";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 export default function AsyncImg({
   src,
@@ -25,6 +25,20 @@ export default function AsyncImg({
   useEffect(() => {
     setIsHover(isMouseOver);
   }, [isMouseOver]);
+
+  useLayoutEffect(() => {
+    function updateImgHeight() {
+      setDivHeight(divRef.current.clientWidth / proportions);
+    }
+    window.addEventListener("resize", () => {
+      updateImgHeight();
+    });
+    return () => {
+      window.removeEventListener("resize", () => {
+        updateImgHeight();
+      });
+    };
+  }, []);
 
   return (
     <div
