@@ -55,6 +55,8 @@ const Comment = ({ comment, handleOnDeleteComment }) => {
     setIsDeletingComment(false);
   }
 
+  console.log(isDeletingComment);
+
   return (
     <div className="comment" key={comment.id}>
       <div className="comment-top">
@@ -93,8 +95,9 @@ const Comment = ({ comment, handleOnDeleteComment }) => {
                     <Lottie
                       className="lottie-spinner"
                       options={defaultOptions}
-                      height={28}
-                      width={28}
+                      height={48}
+                      width={48}
+                      style={{ margin: 0 }}
                     />
                   ) : undefined}
                 </button>

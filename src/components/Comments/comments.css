@@ -20,7 +20,6 @@
 }
 
 .comment-username {
-  /* font-weight: 700; */
   font-size: 1rem;
   color: var(--grey-800);
 }
@@ -34,15 +33,12 @@
 
   resize: none;
 }
-/* 
-.comment-textarea {
-  border: none;
-  color: var(--grey-800);
-} */
+
 .comment-textarea:focus {
   border: none;
   outline: none;
 }
+
 .comment-form {
   width: 100%;
   display: flex;
@@ -52,7 +48,6 @@
   background-color: var(--yellow-200);
   padding: 16px;
   view-transition-name: comment-form;
-  /* border-radius: 4px; */
 }
 
 ::view-transition-new(comment-form) {
@@ -106,7 +101,7 @@
 
 .delete-btn {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   font-size: 1rem;
   cursor: pointer;
@@ -121,7 +116,7 @@
 }
 
 .delete-btn:hover {
-  background-color: var(--yellow-200);
+  background-color: var(--yellow-100);
   transition: all 0.4s ease-in-out;
 }
 
