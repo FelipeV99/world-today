@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  border-bottom: 1px solid var(--grey-400);
   justify-content: center;
 }
 
@@ -59,6 +58,15 @@
 
 .nav-mid-line {
   border-bottom: 2px solid var(--grey-900);
+}
+
+.nav-bottom-line{
+  border: none;
+  border-bottom: 1px solid var(--grey-400);
+  /* border-top: 4px dashed var(--grey-400); */
+  
+  /* size: 2px;
+  width: 1px; */
 }
 
 @media (max-width: 1080px) {

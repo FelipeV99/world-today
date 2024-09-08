@@ -11,7 +11,7 @@ export default function NewsArticle() {
 
   return (
     <div className="news-article-container">
-      <div className="space-ver-xl"></div>
+      <div className="space-ver-l"></div>
       <div className="news-article-tags">
         <p className="date">{selectedArticle.date} - </p>
 
@@ -23,7 +23,7 @@ export default function NewsArticle() {
       </div>
       <div className="space-ver-xs"></div>
       <h1>{selectedArticle.title}</h1>
-      <div className="space-ver-s"></div>
+      <div className="space-ver-xs"></div>
       <h2 className="subtitle">{selectedArticle.subtitle}</h2>
       <div className="space-ver-s"></div>
       <AsyncImg src={selectedArticle.imgUrl} />

@@ -143,12 +143,12 @@
 
 .transition-exit {
   opacity: 1;
-  transform: translate(0, 0);
+  /* transform: translate(0, 0); */
   /* transition: 700ms ease-out; */
 }
 
 .transition-exit-active {
   opacity: 0;
-  transform: translate(0, 10px);
+  /* transform: translate(0, 10px); */
   transition: all 400ms ease-in-out;
 }

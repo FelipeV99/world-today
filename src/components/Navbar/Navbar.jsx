@@ -72,7 +72,7 @@ export default function Navbar() {
           Technology
         </Link>
       </div>
-      <div className="nav-bottom-line"></div>
+      <hr className="nav-bottom-line"></hr>
     </nav>
   );
 }
