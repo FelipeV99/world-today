@@ -77,24 +77,28 @@ const Comment = ({ comment, handleOnDeleteComment }) => {
             />
 
             {isPopoverVisible ? (
-              <button
+              <div
+                ref={setPopperElement}
+                className="delete-popover"
                 style={styles.popper}
                 {...attributes.popper}
-                className="delete-popover"
-                onClick={handleOnClickDelete}
-                ref={setPopperElement}
-                disabled={isDeletingComment}
               >
-                Delete
-                {isDeletingComment ? (
-                  <Lottie
-                    className="lottie-spinner"
-                    options={defaultOptions}
-                    height={28}
-                    width={28}
-                  />
-                ) : undefined}
-              </button>
+                <button
+                  className="delete-btn"
+                  onClick={handleOnClickDelete}
+                  disabled={isDeletingComment}
+                >
+                  Delete
+                  {isDeletingComment ? (
+                    <Lottie
+                      className="lottie-spinner"
+                      options={defaultOptions}
+                      height={28}
+                      width={28}
+                    />
+                  ) : undefined}
+                </button>
+              </div>
             ) : (
               <></>
             )}

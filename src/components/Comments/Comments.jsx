@@ -1,4 +1,4 @@
-import "./comments.css"
+import "./comments.css";
 import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../App";
 
@@ -155,37 +155,32 @@ const Comments = ({ newsArticleId }) => {
       )}
       <div className="space-ver-s"></div>
 
-
       <div className="comments-container">
-<TransitionGroup>
+        <TransitionGroup>
+          {comments.map((comment) => {
+            return (
+              <CSSTransition
+                key={comment.id}
+                classNames="transition"
+                timeout={700}
+              >
+                <div>
+                  <Comment
+                    comment={comment}
+                    handleOnDeleteComment={handleOnDeleteComment}
+                  />
 
-        {comments.map((comment) => {
-          return (
-            <CSSTransition key={comment.id} classNames="transition">
-
-
-            <div>
-
-              <Comment
-                comment={comment}
-                handleOnDeleteComment={handleOnDeleteComment}
-              />
-
-              {comment !== comments[comments.length - 1] ? (
-                <div className="space-ver-l"></div>
-              ) : (
-                <></>
-              )}
-            </div>
-            </CSSTransition>
-
-
-          );
-        })}
+                  {comment !== comments[comments.length - 1] ? (
+                    <div className="space-ver-l"></div>
+                  ) : (
+                    <></>
+                  )}
+                </div>
+              </CSSTransition>
+            );
+          })}
         </TransitionGroup>
-
       </div>
-
     </div>
   );
 };

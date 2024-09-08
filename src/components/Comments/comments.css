@@ -92,21 +92,37 @@
 
 .delete-popover {
   position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* padding: var(--space-xxs); */
-  height: 28px;
-  padding-left: var(--space-xs);
-  padding-right: var(--space-xs);
-  margin: 4px;
-
+  width: 220px;
   background-color: var(--yellow-100);
   border: 1px solid var(--grey-400);
-  /* border-radius: 4px; */
+  padding-left: var(--space-xxs);
+  padding-right: var(--space-xxs);
+
+  padding-top: var(--space-xxs);
+  padding-bottom: var(--space-xxs);
+
+  margin: 4px;
+}
+
+.delete-btn {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   font-size: 1rem;
   cursor: pointer;
   color: var(--grey-800);
+  border: none;
+  background-color: var(--yellow-100);
+  padding-left: var(--space-xs);
+  padding-right: var(--space-xs);
+  height: 28px;
+  width: 100%;
+  transition: all 0.4s ease-in-out;
+}
+
+.delete-btn:hover {
+  background-color: var(--yellow-200);
+  transition: all 0.4s ease-in-out;
 }
 
 .delete-popover:disabled {
@@ -118,27 +134,26 @@
   position: absolute;
 }
 
-
-.transition-enter{
+.transition-enter {
   opacity: 0.01;
-  transform: translate(0,-10px);
+  transform: translate(0, -10px);
   /* transition: 700ms ease-out; */
 }
 
-.transition-enter-active{
+.transition-enter-active {
   opacity: 1;
-  transform: translate(0,0); 
-   transition: all 700ms ease-out;
+  transform: translate(0, 0);
+  transition: all 400ms ease-in-out;
 }
 
-.transition-exit{
+.transition-exit {
   opacity: 1;
-  transform: translate(0,0);
+  transform: translate(0, 0);
   /* transition: 700ms ease-out; */
 }
 
-.transition-exit-active{
+.transition-exit-active {
   opacity: 0;
-  transform: translate(0,10px); 
-   transition: all 700ms ease-out;
+  transform: translate(0, 10px);
+  transition: all 400ms ease-in-out;
 }
