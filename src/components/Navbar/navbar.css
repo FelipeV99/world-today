@@ -17,6 +17,8 @@
   padding-top: var(--space-s);
 
   padding-bottom: var(--space-s);
+  padding-left: var(--space-m);
+  padding-right: var(--space-m);
 }
 
 .nav-bottom {
@@ -39,10 +41,17 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 400;
+  transition: 0.2s ease-in-out;
+
 }
 
 .nav-optn:visited {
   color: var(--grey-700);
+}
+
+.nav-optn:hover{
+  font-weight: 600;
+  transition: 0.2s ease-in-out;
 }
 
 .auth-div {
@@ -58,7 +67,9 @@
     min-width: 320px;
     max-width: none;
   }
-  .nav-center {
+  
+
+  .nav-left{
     display: none;
   }
 }

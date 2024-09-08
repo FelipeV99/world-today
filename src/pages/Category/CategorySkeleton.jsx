@@ -1,7 +1,7 @@
 import "./category.css";
 export default function CategorySkeleton() {
   return (
-    <div className="category-container">
+    <div className="category-container-skeleton">
       <h1 className="skeleton skeleton-inline"></h1>
       <div className="space-ver-m"></div>
       <div className="category-grid">

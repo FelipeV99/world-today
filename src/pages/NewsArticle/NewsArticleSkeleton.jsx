@@ -1,7 +1,7 @@
 import "./news-article.css";
 export default function NewsArticleSkeleton() {
   return (
-    <div className="news-article-container">
+    <div className="news-article-container-skeleton">
       <div className="space-ver-xl"></div>
 
       <div className="news-article-tags skeleton skeleton-inline"></div>

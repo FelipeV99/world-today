@@ -1,3 +1,4 @@
+import "./comments.css"
 import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../App";
 
@@ -19,11 +20,14 @@ import { db } from "../../config/firebase";
 import Button from "../Button/Button";
 import { format } from "date-fns";
 import { flushSync } from "react-dom";
+// import { TransitionGroup } from "react-transition-group";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 // const Comments = ({ comments, newsArticleId }) => {
 const Comments = ({ newsArticleId }) => {
   const currentUser = useContext(AuthContext);
   const commentInputRef = useRef();
+  // const nodeRef = useRef()
   const [isTextareaInFocus, setIsTextareaInFocus] = useState(false);
   const [isSubmittingComment, setIsSubmittingComment] = useState(false);
   const [comments, setComments] = useState([]);
@@ -151,23 +155,37 @@ const Comments = ({ newsArticleId }) => {
       )}
       <div className="space-ver-s"></div>
 
+
       <div className="comments-container">
+<TransitionGroup>
+
         {comments.map((comment) => {
           return (
-            <div key={comment.id}>
+            <CSSTransition key={comment.id} classNames="transition">
+
+
+            <div>
+
               <Comment
                 comment={comment}
                 handleOnDeleteComment={handleOnDeleteComment}
               />
+
               {comment !== comments[comments.length - 1] ? (
                 <div className="space-ver-l"></div>
               ) : (
                 <></>
               )}
             </div>
+            </CSSTransition>
+
+
           );
         })}
+        </TransitionGroup>
+
       </div>
+
     </div>
   );
 };

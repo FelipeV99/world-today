@@ -37,30 +37,34 @@ export default function Navbar() {
             <div className="auth-div">
               <button
                 className="btn-secondary"
-                onClick={() => {
-                  if (document.startViewTransition) {
-                    document.startViewTransition(() => {
-                      navigate("/signin");
-                    });
-                  } else {
-                    navigate("/signin");
-                  }
-                }}
+                onClick={() => navigate("/signin")}
+                
+                // onClick={() => {
+                //   if (document.startViewTransition) {
+                //     document.startViewTransition(() => {
+                //       navigate("/signin");
+                //     });
+                //   } else {
+                //     navigate("/signin");
+                //   }
+                // }}
               >
                 Log In
               </button>
               <button
                 className="btn-primary btn-thin"
-                onClick={() => {
-                  if (document.startViewTransition) {
-                    // console.log("start transition!");
-                    document.startViewTransition(() => {
-                      navigate("/signup");
-                    });
-                  } else {
-                    navigate("/signup");
-                  }
-                }}
+                onClick={() => navigate("/signup")}
+
+                // onClick={() => {
+                //   if (document.startViewTransition) {
+                //     // console.log("start transition!");
+                //     document.startViewTransition(() => {
+                //       navigate("/signup");
+                //     });
+                //   } else {
+                //     navigate("/signup");
+                //   }
+                // }}
               >
                 Sign Up
               </button>

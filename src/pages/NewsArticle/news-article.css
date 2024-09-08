@@ -2,7 +2,18 @@
   display: flex;
   flex-direction: column;
   max-width: 680px;
+  animation: 0.4s ease-in-out 0s 1 slideInFromBottom;
+
 }
+
+.news-article-container-skeleton {
+  display: flex;
+  flex-direction: column;
+  max-width: 680px;
+  animation: 0.2s ease-in-out 0s 1 fadeIn;
+
+}
+
 
 .paragraph {
   font-size: 1.125rem;

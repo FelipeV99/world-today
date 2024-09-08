@@ -2,7 +2,7 @@ import AsyncImg from "../../components/AsyncImg/AsyncImg";
 
 export default function HomeSkeleton() {
   return (
-    <section className="home-container">
+    <section className="home-container-skeleton">
       <div className="home-left">
         <div className="main-headline">
           <AsyncImg src="" proportions={2} />

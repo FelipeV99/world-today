@@ -7,6 +7,7 @@ import { useContext, useEffect, useState } from "react";
 import { CurrentComponentContext } from "../../App";
 import { collection, getDocs, limit, query } from "firebase/firestore";
 import { db } from "../../config/firebase";
+import CardThree from "../CardThree/CardThree";
 
 export default function MoreArticles({ currentArticleId }) {
   const navigate = useNavigate();
@@ -49,17 +50,13 @@ export default function MoreArticles({ currentArticleId }) {
       <div className="more-grid">
         {recommendedArticles.map((article) => {
           return (
-            <div
-              className="card-three"
+            <CardThree
               key={article.id}
-              onClick={() => handleOnCklickCard(article.id)}
-            >
-              <img className="img-fit" src={article.imgUrl} alt="" />
-              <div className="space-ver-xs"></div>
-              <h2>{article.title}</h2>
-              <div className="space-ver-xs"></div>
-              <p>{article.subtitle}</p>
-            </div>
+              id={article.id}
+              imgUrl={article.imgUrl}
+              title={article.title}
+              subtitle={article.subtitle}
+            />
           );
         })}
       </div>
