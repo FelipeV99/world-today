@@ -34,10 +34,10 @@ export const router = createBrowserRouter([
             loader: newsArticleLoader,
             // action: newsArticleAction,
           },
-          // {
-          //   path: "transition",
-          //   element: <TransitionWork />,
-          // },
+          {
+            path: "transition",
+            element: <TransitionWork />,
+          },
 
           {
             path: "*",

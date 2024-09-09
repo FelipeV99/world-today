@@ -250,6 +250,27 @@ label {
   /* padding-left: var(--space-m);
   padding-right: var(--space-m); */
   min-width: 360px;
+  /* scrollbar-width: thin; */
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: var(--space-xxs);
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--yellow-100);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--grey-500);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--grey-900);
 }
 /* 
 .skeleton {
