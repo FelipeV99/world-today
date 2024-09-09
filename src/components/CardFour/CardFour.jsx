@@ -23,7 +23,7 @@ const CardFour = ({ id, imgUrl, title, subtitle }) => {
       onMouseLeave={() => setIsHover(false)}
     >
       <AsyncImg src={imgUrl} clickableImg={true} isMouseOver={isHover} />
-      <div className="space-ver-s"></div>
+      <div className="space-ver-xs"></div>
       <h2>{title}</h2>
       <div className="space-ver-xs"></div>
 

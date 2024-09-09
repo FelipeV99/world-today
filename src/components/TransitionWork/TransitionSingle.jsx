@@ -1,21 +1,27 @@
-import { Transition } from "react-transition-group";
+import { CSSTransition } from "react-transition-group";
+import { useState, useRef } from "react";
 import "./transition-single.css";
-import React, { useState } from "react";
 
-const TransitionSingle = () => {
-  const [isActive, setIsActive] = useState(false);
+export default function TransitionSingle() {
+  const [inProp, setInProp] = useState(false);
+
+  const nodeRef = useRef(null);
+
   return (
-    <Transition timeout={400}>
-      <div
-        className="ts-container"
-        onMouseEnter={() => setIsActive(true)}
-        onMouseLeave={() => setIsActive(false)}
+    <div>
+      <CSSTransition
+        nodeRef={nodeRef}
+        in={inProp}
+        timeout={200}
+        classNames={"ts-container"}
+        unmountOnExit
       >
-        content
-        {isActive ? <button className="btn-primary">on hood</button> : <></>}
-      </div>
-    </Transition>
+        <div className="ts-container" ref={nodeRef}>
+          I'm a fade Transition!
+        </div>
+      </CSSTransition>
+      <button onClick={() => setInProp(true)}>Click to Enter</button>
+      <button onClick={() => setInProp(false)}>Click to exit</button>
+    </div>
   );
-};
-
-export default TransitionSingle;
+}

@@ -1,9 +1,30 @@
 .ts-container {
   width: 320px;
-  /* height: 120px; */
   background-color: var(--yellow-200);
   display: flex;
   flex-direction: column;
   padding: 12px;
   gap: 8px;
+}
+
+.ts-container-enter {
+  opacity: 0;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
+}
+.ts-container-enter-active {
+  opacity: 1;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+
+  transition: all 200ms ease-in-out;
+}
+.ts-container-exit {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+
+  opacity: 1;
+}
+.ts-container-exit-active {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
+
+  opacity: 0;
+  transition: all 200ms ease-in-out;
 }

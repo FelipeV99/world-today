@@ -31,13 +31,7 @@ export default function CardOne({ id, imgUrl, title, categories, subtitle }) {
         </div>
         <div className="space-ver-xs"></div>
         <div className="bottom-card-one">
-          <h2
-            className={`card-one-title ${
-              isHover ? "card-one-title-hover" : ""
-            }`}
-          >
-            {title}
-          </h2>
+          <h2 className={`card-one-title}`}>{title}</h2>
           <div className="space-ver-xxs"></div>
           <p>{subtitle}</p>
         </div>
