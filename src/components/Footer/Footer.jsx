@@ -7,13 +7,10 @@ export default function Footer() {
   const { setCurrentComponent } = useContext(CurrentComponentContext);
 
   return (
-    <>
-      {/* <div className="space-ver-xl"></div>
-      <div className="line-hor"></div>
-      <div className="space-ver-xl"></div> */}
-      <footer className="footer">
+    <footer className="footer">
+      <div className="footer-inner-container">
         <div className="footer-left">
-          <img src="https://firebasestorage.googleapis.com/v0/b/news-5462b.appspot.com/o/wt-logo-letters.svg?alt=media&token=8241cabc-b2ad-4107-b739-052e193e77f9" />
+          <img src="https://firebasestorage.googleapis.com/v0/b/news-5462b.appspot.com/o/logo-only.svg?alt=media&token=d1d784e5-857c-4e97-a0a8-3b788b01ef7a" />
           <p className="copyright">© WT, 2024</p>
         </div>
         <div
@@ -50,7 +47,7 @@ export default function Footer() {
             <img src="https://firebasestorage.googleapis.com/v0/b/news-5462b.appspot.com/o/arrow-right.svg?alt=media&token=34d5c3a1-93a7-41ca-bb35-3e9c911f03f1" />
           </Link>
         </div>
-      </footer>
-    </>
+      </div>
+    </footer>
   );
 }

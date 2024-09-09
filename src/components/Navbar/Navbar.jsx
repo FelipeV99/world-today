@@ -24,6 +24,12 @@ export default function Navbar() {
           onClick={() => setCurrentComponent("home")}
         >
           <img
+            className="wt-logo-short"
+            src="https://firebasestorage.googleapis.com/v0/b/news-5462b.appspot.com/o/wt-short.svg?alt=media&token=8d07cb29-0825-49ac-a5f6-5ac396c3144e"
+            alt=""
+          />
+          <img
+            className="wt-logo-long"
             src="https://firebasestorage.googleapis.com/v0/b/news-5462b.appspot.com/o/WORLD%20TODAY.svg?alt=media&token=6decbebd-6935-46cd-9745-a6b4a2158a1e"
             alt=""
           />

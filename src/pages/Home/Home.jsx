@@ -57,6 +57,33 @@ export default function Home() {
             <p className="headline-subtitle">{mainHeadline.subtitle}</p>
           </div>
         </div>
+        <div className="main-headline-small">
+          <CardOne
+            id={mainHeadline.id}
+            imgUrl={mainHeadline.imgUrl}
+            title={mainHeadline.title}
+            subtitle={mainHeadline.subtitle}
+            categories={mainHeadline.categories}
+          />
+        </div>
+        {/* <div
+          className="main-headline-small"
+          onClick={() => handleOnCklickHeadline(mainHeadline.id)}
+          onMouseEnter={() => {
+            setIsMainHeadlineHover(true);
+          }}
+          onMouseLeave={() => {
+            setIsMainHeadlineHover(false);
+          }}
+        >
+          <AsyncImg src={mainHeadline.imgUrl} proportions={1.5} />
+          <div className="img-content">
+            <div className="news-tag-block Politics-tag">
+              <p>Politics</p>
+            </div>
+            <h1 className="headline-title">{mainHeadline.title}</h1>
+          </div>
+        </div> */}
         <div className="space-ver-m"></div>
 
         <div className="other-news-left">
@@ -72,9 +99,9 @@ export default function Home() {
                 />
 
                 <div className="spacing-tertiary-headlines">
-                  <div className="space-ver-s"></div>
+                  <div className="space-ver-m"></div>
                   <div className="line-hor"></div>
-                  <div className="space-ver-s"></div>
+                  <div className="space-ver-m"></div>
                 </div>
               </div>
             );
