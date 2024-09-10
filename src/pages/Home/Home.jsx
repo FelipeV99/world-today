@@ -10,13 +10,11 @@ import {
   where,
 } from "firebase/firestore";
 import { useLoaderData, useNavigate } from "react-router-dom";
-// import CardTwo from "../../components/CardTwo/CardTwo";
 import CardOne from "../../components/Cards/CardOne/CardOne";
 import { useContext, useState } from "react";
 import { CurrentComponentContext } from "../../App";
 import AsyncImg from "../../components/AsyncImg/AsyncImg";
 import CardTwo from "../../components/Cards/CardTwo/CardTwo";
-// import CardOne from "../../components/CardOne/CardOne";
 
 export default function Home() {
   const { mainHeadline, secondaryHeadlines, tertiaryHeadlines } =
@@ -67,24 +65,7 @@ export default function Home() {
             categories={mainHeadline.categories}
           />
         </div>
-        {/* <div
-          className="main-headline-small"
-          onClick={() => handleOnCklickHeadline(mainHeadline.id)}
-          onMouseEnter={() => {
-            setIsMainHeadlineHover(true);
-          }}
-          onMouseLeave={() => {
-            setIsMainHeadlineHover(false);
-          }}
-        >
-          <AsyncImg src={mainHeadline.imgUrl} proportions={1.5} />
-          <div className="img-content">
-            <div className="news-tag-block Politics-tag">
-              <p>Politics</p>
-            </div>
-            <h1 className="headline-title">{mainHeadline.title}</h1>
-          </div>
-        </div> */}
+
         <div className="space-ver-m"></div>
 
         <div className="other-news-left">
@@ -115,9 +96,22 @@ export default function Home() {
           onClick={() => handleOnCklickHeadline(secondaryHeadlines[0].id)}
         >
           <AsyncImg src={secondaryHeadlines[0].imgUrl} />
+          {/* <div className="secondary-img-content">
+            {secondaryHeadlines[0].categories.map((category) => {
+              return (
+                <div
+                  key={category}
+                  className={`news-tag-block ${category}-tag`}
+                >
+                  <p>{category}</p>
+                </div>
+              );
+            })}
+          </div> */}
         </div>
 
-        <div className="space-ver-s"></div>
+        <div className="space-ver-xs"></div>
+
         {secondaryHeadlines.map((headline) => (
           <div key={headline.id} className="card-two-container">
             <CardTwo

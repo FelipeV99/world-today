@@ -43,19 +43,19 @@
 
 .secondary-headline-img {
   cursor: pointer;
+  position: relative;
 }
 
-/* .spacing-secondary-headlines:last-child {
-  display: none;
+.secondary-img-content {
+  display: flex;
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  gap: var(--space-xs);
 }
 
-.spacing-tertiary-headlines:last-child {
-  display: none;
-} */
-
-/* .home-right:last-child {
-  background-color: red;
-} */
 .card-one-container:last-child > .spacing-tertiary-headlines {
   display: none;
 }

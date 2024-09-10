@@ -14,7 +14,6 @@ export default function NewsArticleSkeleton() {
       <div className="space-ver-s"></div>
 
       <div className="img-container skeleton news-skeleton-img">
-        {/* <img src="" /> */}
         <AsyncImg src="" />
       </div>
       <div className="space-ver-m"></div>
