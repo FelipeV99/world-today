@@ -10,11 +10,12 @@ import {
   where,
 } from "firebase/firestore";
 import { useLoaderData, useNavigate } from "react-router-dom";
-import CardTwo from "../../components/CardTwo/CardTwo";
+// import CardTwo from "../../components/CardTwo/CardTwo";
 import CardOne from "../../components/Cards/CardOne/CardOne";
 import { useContext, useState } from "react";
 import { CurrentComponentContext } from "../../App";
 import AsyncImg from "../../components/AsyncImg/AsyncImg";
+import CardTwo from "../../components/Cards/CardTwo/CardTwo";
 // import CardOne from "../../components/CardOne/CardOne";
 
 export default function Home() {

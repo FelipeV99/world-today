@@ -7,7 +7,7 @@ import { useContext, useEffect, useState } from "react";
 import { CurrentComponentContext } from "../../App";
 import { collection, getDocs, limit, query } from "firebase/firestore";
 import { db } from "../../config/firebase";
-import CardThree from "../CardThree/CardThree";
+import CardThree from "../Cards/CardThree/CardThree";
 
 export default function MoreArticles({ currentArticleId }) {
   const navigate = useNavigate();

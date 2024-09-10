@@ -2,7 +2,7 @@
 import { useNavigate } from "react-router-dom";
 import "./card-two.css";
 import { useContext, useState } from "react";
-import { CurrentComponentContext } from "../../App";
+import { CurrentComponentContext } from "../../../App";
 // import { flushSync } from "react-dom";
 export default function CardTwo({ id, title, subtitle }) {
   const { setCurrentComponent } = useContext(CurrentComponentContext);
