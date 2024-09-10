@@ -1,12 +1,8 @@
 import "./category.css";
-
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../config/firebase";
-import { useLoaderData, useNavigate, useParams } from "react-router-dom";
-import { useContext, useState } from "react";
-import { CurrentComponentContext } from "../../App";
-import AsyncImg from "../../components/AsyncImg/AsyncImg";
-import CardFour from "../../components/CardFour/CardFour";
+import { useLoaderData, useParams } from "react-router-dom";
+import CardFour from "../../components/Cards/CardFour/CardFour";
 
 export async function categoryLoader({ params }) {
   const newsListRef = collection(db, "news");

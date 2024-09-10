@@ -3,8 +3,8 @@ import "./card-one.css";
 
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
-import { CurrentComponentContext } from "../../App";
-import AsyncImg from "../AsyncImg/AsyncImg";
+import { CurrentComponentContext } from "../../../App";
+import AsyncImg from "../../AsyncImg/AsyncImg";
 export default function CardOne({ id, imgUrl, title, categories, subtitle }) {
   const { setCurrentComponent } = useContext(CurrentComponentContext);
   const [isHover, setIsHover] = useState(false);

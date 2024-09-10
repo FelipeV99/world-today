@@ -14,6 +14,11 @@ export default function Navbar() {
   async function handleOnLogout() {
     await signOut(auth);
   }
+
+  function handleOnClickSignIn() {
+    setCurrentComponent("home");
+    navigate("/signin");
+  }
   return (
     <nav className="nav">
       <div className="nav-top">
@@ -41,10 +46,7 @@ export default function Navbar() {
             </button>
           ) : (
             <div className="auth-div">
-              <button
-                className="btn-secondary"
-                onClick={() => navigate("/signin")}
-              >
+              <button className="btn-secondary" onClick={handleOnClickSignIn}>
                 Log In
               </button>
               <button

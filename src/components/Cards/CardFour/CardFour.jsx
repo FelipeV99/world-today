@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
-import AsyncImg from "../AsyncImg/AsyncImg";
-import { CurrentComponentContext } from "../../App";
+import AsyncImg from "../../AsyncImg/AsyncImg";
+import { CurrentComponentContext } from "../../../App";
 import { useNavigate } from "react-router-dom";
 
 const CardFour = ({ id, imgUrl, title, subtitle }) => {

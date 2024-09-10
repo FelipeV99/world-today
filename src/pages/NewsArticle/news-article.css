@@ -12,6 +12,9 @@
   display: flex;
   flex-direction: column;
   max-width: 680px;
+  width: 100%;
+  padding-left: var(--space-m);
+  padding-right: var(--space-m);
   animation: 0.2s ease-in-out 0s 1 fadeIn;
 }
 
@@ -36,6 +39,7 @@
 .news-skeleton-img {
   height: 320px;
   width: 680px;
+  max-width: 100%;
 }
 
 #news-skeleton-h1 {
@@ -49,6 +53,11 @@
 
 @media (max-width: 600px) {
   .news-article-container {
+    padding-left: var(--space-xs);
+    padding-right: var(--space-xs);
+  }
+
+  .news-article-container-skeleton {
     padding-left: var(--space-xs);
     padding-right: var(--space-xs);
   }

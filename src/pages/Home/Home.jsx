@@ -11,7 +11,7 @@ import {
 } from "firebase/firestore";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import CardTwo from "../../components/CardTwo/CardTwo";
-import CardOne from "../../components/CardOne/CardOne";
+import CardOne from "../../components/Cards/CardOne/CardOne";
 import { useContext, useState } from "react";
 import { CurrentComponentContext } from "../../App";
 import AsyncImg from "../../components/AsyncImg/AsyncImg";
