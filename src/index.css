@@ -16,7 +16,6 @@
   --yellow-300: #ccc1ad;
 
   --red-100: #f9d4d4;
-
   --red-300: #de3d3d;
 
   --space-xxs: 4px;
@@ -26,9 +25,10 @@
   --space-l: 32px;
   --space-xl: 64px;
 
-  --border-xxs: 4px;
+  --max-container-width: 1440px;
+  --min-container-width: 320px;
 
-  /* --h1: 44px */
+  --border-xxs: 4px;
 }
 
 * {
@@ -68,14 +68,30 @@ a:visited {
   text-decoration: none;
   color: var(--grey-800);
 }
-/* 
-img {
-  border-radius: 4px;
-} */
 
 label {
   color: var(--grey-600);
   font-size: 0.875rem;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: var(--space-xxs);
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--yellow-100);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--grey-500);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--grey-900);
 }
 
 .grey-100 {
@@ -247,35 +263,8 @@ label {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* padding-left: var(--space-m);
-  padding-right: var(--space-m); */
   min-width: 360px;
-  /* scrollbar-width: thin; */
 }
-
-/* width */
-::-webkit-scrollbar {
-  width: var(--space-xxs);
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: var(--yellow-100);
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: var(--grey-500);
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: var(--grey-900);
-}
-/* 
-.skeleton {
-  position: relative;
-} */
 
 .skeleton {
   content: "";
@@ -289,7 +278,6 @@ label {
   );
   background-size: 200%;
   animation: skeleton 1s infinite reverse;
-  /* border-radius: 4px; */
 }
 
 .subtitle {
