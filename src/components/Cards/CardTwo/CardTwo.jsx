@@ -1,13 +1,15 @@
 /* eslint-disable react/prop-types */
-import { useNavigate } from "react-router-dom";
 import "./card-two.css";
+
+import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { CurrentComponentContext } from "../../../App";
+
 export default function CardTwo({ id, title, subtitle }) {
   const { setCurrentComponent } = useContext(CurrentComponentContext);
   const [isHover, setIsHover] = useState(false);
-
   const navigate = useNavigate();
+
   function handleOnClickCard(newsId) {
     setCurrentComponent("news");
     navigate("news/" + newsId);
@@ -15,7 +17,7 @@ export default function CardTwo({ id, title, subtitle }) {
 
   return (
     <div
-      className={`card-two`}
+      className="card-two"
       onClick={() => handleOnClickCard(id)}
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}

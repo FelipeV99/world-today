@@ -25,6 +25,17 @@ function App() {
     return unsubscribe;
   }, []);
 
+  function loadSkeleton() {
+    switch (currentComponent) {
+      case "news":
+        return <NewsArticleSkeleton />;
+      case "category":
+        return <CategorySkeleton />;
+      default:
+        return <HomeSkeleton />;
+    }
+  }
+
   return (
     <AuthContext.Provider value={currentUser}>
       <CurrentComponentContext.Provider
@@ -36,13 +47,7 @@ function App() {
         <Navbar />
         <ScrollToTop />
         {state === "loading" || loadingUser === true ? (
-          currentComponent === "news" ? (
-            <NewsArticleSkeleton />
-          ) : currentComponent === "category" ? (
-            <CategorySkeleton />
-          ) : (
-            <HomeSkeleton />
-          )
+          loadSkeleton()
         ) : (
           <>
             <Outlet />

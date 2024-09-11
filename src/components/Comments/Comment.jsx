@@ -3,8 +3,10 @@ import "./comments.css";
 
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../config/firebase";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import { AuthContext } from "../../App";
+import { CSSTransition } from "react-transition-group";
+
 import Spinner from "../../assets/spinner.json";
 import Lottie from "react-lottie";
 
@@ -28,6 +30,7 @@ const Comment = ({ comment, handleOnDeleteComment }) => {
     autoplay: true,
     animationData: Spinner,
   };
+  const nodeRef = useRef(null);
 
   //I think this function is slowing down the code a lot, I should probably request the users in the route loader
   //podria traer todos los usuarios y aprtir de eso ver cuales son los que necesito viendo con los comentarios
@@ -55,8 +58,6 @@ const Comment = ({ comment, handleOnDeleteComment }) => {
     setIsDeletingComment(false);
   }
 
-  console.log(isDeletingComment);
-
   return (
     <div className="comment" key={comment.id}>
       <div className="comment-top">
@@ -77,34 +78,39 @@ const Comment = ({ comment, handleOnDeleteComment }) => {
                 })
               }
             />
-
-            {isPopoverVisible ? (
-              <div
-                ref={setPopperElement}
-                className="delete-popover"
-                style={styles.popper}
-                {...attributes.popper}
-              >
-                <button
-                  className="delete-btn"
-                  onClick={handleOnClickDelete}
-                  disabled={isDeletingComment}
+            <CSSTransition
+              nodeRef={nodeRef}
+              in={isPopoverVisible}
+              timeout={1000}
+              classNames={"delete-popover"}
+              unmountOnExit
+            >
+              <div ref={nodeRef}>
+                <div
+                  ref={setPopperElement}
+                  className="delete-popover"
+                  style={styles.popper}
+                  {...attributes.popper}
                 >
-                  Delete
-                  {isDeletingComment ? (
-                    <Lottie
-                      className="lottie-spinner"
-                      options={defaultOptions}
-                      height={48}
-                      width={48}
-                      style={{ margin: 0 }}
-                    />
-                  ) : undefined}
-                </button>
+                  <button
+                    className="delete-btn"
+                    onClick={handleOnClickDelete}
+                    disabled={isDeletingComment}
+                  >
+                    Delete
+                    {isDeletingComment ? (
+                      <Lottie
+                        className="lottie-spinner"
+                        options={defaultOptions}
+                        height={48}
+                        width={48}
+                        style={{ margin: 0 }}
+                      />
+                    ) : undefined}
+                  </button>
+                </div>
               </div>
-            ) : (
-              <></>
-            )}
+            </CSSTransition>
           </div>
         ) : (
           <></>

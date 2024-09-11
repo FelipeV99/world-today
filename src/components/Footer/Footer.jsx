@@ -10,7 +10,10 @@ export default function Footer() {
     <footer className="footer">
       <div className="footer-inner-container">
         <div className="footer-left">
-          <img src="https://firebasestorage.googleapis.com/v0/b/news-5462b.appspot.com/o/logo-only.svg?alt=media&token=d1d784e5-857c-4e97-a0a8-3b788b01ef7a" />
+          <img
+            src="https://firebasestorage.googleapis.com/v0/b/news-5462b.appspot.com/o/logo-only.svg?alt=media&token=d1d784e5-857c-4e97-a0a8-3b788b01ef7a"
+            alt=""
+          />
           <p className="copyright">© WT, 2024</p>
         </div>
         <div

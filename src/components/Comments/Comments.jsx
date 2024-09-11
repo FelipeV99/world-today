@@ -20,17 +20,16 @@ import { db } from "../../config/firebase";
 import Button from "../Button/Button";
 import { format } from "date-fns";
 import { flushSync } from "react-dom";
-// import { TransitionGroup } from "react-transition-group";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
-// const Comments = ({ comments, newsArticleId }) => {
 const Comments = ({ newsArticleId }) => {
   const currentUser = useContext(AuthContext);
   const commentInputRef = useRef();
-  // const nodeRef = useRef()
   const [isTextareaInFocus, setIsTextareaInFocus] = useState(false);
   const [isSubmittingComment, setIsSubmittingComment] = useState(false);
   const [comments, setComments] = useState([]);
+
+  const nodeRef = useRef(null);
 
   async function getComments() {
     const commentsRef = collection(db, "comments");
@@ -57,10 +56,10 @@ const Comments = ({ newsArticleId }) => {
 
   async function handleOnCreateComment(e) {
     e.preventDefault();
+    //create comment on comments collection
     setIsSubmittingComment(true);
     const splitDate = new Date().toDateString().split(" ");
     const formattedDate = `${splitDate[1]} ${splitDate[2]}, ${splitDate[3]}`;
-
     const commentsRef = collection(db, "comments");
     const commentDocRef = await addDoc(commentsRef, {
       userId: currentUser.uid,
@@ -69,6 +68,8 @@ const Comments = ({ newsArticleId }) => {
       newsArticleId: newsArticleId,
       formatDate: format(new Date(), "yyyy-L-d H:m:s"),
     });
+
+    //update the comments array of the user who created the comment
     const userProfilesRef = doc(db, "user-profiles", currentUser.uid);
 
     await updateDoc(userProfilesRef, {
@@ -84,7 +85,6 @@ const Comments = ({ newsArticleId }) => {
     };
     setIsSubmittingComment(false);
 
-    // setCreatedComments([comment, ...createdComments]);
     setComments([comment, ...comments]);
     commentInputRef.current.value = "";
     setIsTextareaInFocus(false);
@@ -130,25 +130,23 @@ const Comments = ({ newsArticleId }) => {
             ref={commentInputRef}
             placeholder="write something..."
             onFocusCapture={() => {
-              if (document.startViewTransition) {
-                document.startViewTransition(() => {
-                  flushSync(() => setIsTextareaInFocus(true));
-                });
-              } else {
-                setIsTextareaInFocus(true);
-              }
+              setIsTextareaInFocus(true);
             }}
           />
-          {isTextareaInFocus ? (
-            <div className="form-btns">
+          <CSSTransition
+            in={isTextareaInFocus}
+            classNames={"form-btns"}
+            nodeRef={nodeRef}
+            timeout={200}
+            unmountOnExit
+          >
+            <div className="form-btns" ref={nodeRef}>
               <button className="btn-secondary" onClick={handleOnClickCancel}>
                 Cancel
               </button>
               <Button btnText="Submit" isLoading={isSubmittingComment} />
             </div>
-          ) : (
-            <></>
-          )}
+          </CSSTransition>
         </form>
       ) : (
         <p className="grey-600">Please sign in to comment</p>

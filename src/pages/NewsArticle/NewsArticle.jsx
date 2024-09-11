@@ -42,14 +42,18 @@ export default function NewsArticle() {
 }
 
 export async function newsArticleLoader({ params }) {
-  //get the current news Article
-  const docRef = doc(db, "news", params.newsId);
-  const docSnap = await getDoc(docRef);
+  try {
+    //get the current news Article
+    const docRef = doc(db, "news", params.newsId);
+    const docSnap = await getDoc(docRef);
 
-  if (docSnap.data()) {
-    const selectedArticle = { ...docSnap.data(), id: params.newsId };
-    return { selectedArticle };
-  } else {
-    throw "error";
+    if (docSnap.data()) {
+      const selectedArticle = { ...docSnap.data(), id: params.newsId };
+      return { selectedArticle };
+    } else {
+      console.error("no doc data found");
+    }
+  } catch (error) {
+    console.error(error);
   }
 }

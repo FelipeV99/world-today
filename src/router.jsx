@@ -8,7 +8,7 @@ import Category, { categoryLoader } from "./pages/Category/Category";
 import NotFound from "./pages/NotFound/NotFound";
 import SignUp, { signUpAction } from "./pages/SignUp/SignUp";
 import SignIn, { signInAction } from "./pages/SignIn/SignIn";
-import TransitionWork from "./components/TransitionWork/TransitionWork";
+// import TransitionWork from "./components/TransitionWork/TransitionWork";
 
 export const router = createBrowserRouter([
   {
@@ -34,10 +34,10 @@ export const router = createBrowserRouter([
             loader: newsArticleLoader,
             // action: newsArticleAction,
           },
-          {
-            path: "transition",
-            element: <TransitionWork />,
-          },
+          // {
+          //   path: "transition",
+          //   element: <TransitionWork />,
+          // },
 
           {
             path: "*",

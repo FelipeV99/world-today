@@ -1,17 +1,12 @@
 /* eslint-disable react/prop-types */
-// import { collection, limit, query } from "firebase/firestore";
 import "./more-articles.css";
 
-import { useNavigate } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
-import { CurrentComponentContext } from "../../App";
+import { useEffect, useState } from "react";
 import { collection, getDocs, limit, query } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import CardThree from "../Cards/CardThree/CardThree";
 
 export default function MoreArticles({ currentArticleId }) {
-  const navigate = useNavigate();
-  const { setCurrentComponent } = useContext(CurrentComponentContext);
   const [recommendedArticles, setRecommendedArticles] = useState([]);
 
   async function getRecommendedArticles() {
@@ -27,18 +22,13 @@ export default function MoreArticles({ currentArticleId }) {
         moreArticles.pop();
       }
     });
-
     setRecommendedArticles(moreArticles);
   }
+
   useEffect(() => {
     getRecommendedArticles();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  function handleOnCklickCard(id) {
-    setCurrentComponent("news");
-    navigate("/news/" + id);
-  }
 
   return (
     <div className="more-container">

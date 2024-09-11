@@ -1,9 +1,6 @@
-// import "./SignUp.css";
-
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
 import { auth } from "../../config/firebase";
-// import Button from "../../components/Button/Button";
 
 export default function SignIn() {
   const { state } = useNavigation();
@@ -24,7 +21,6 @@ export default function SignIn() {
         ) : (
           <></>
         )}
-        {/* <p className={`input-error ${error ? "" : "hidden"}`}>{error}</p> */}
         <div className="input-group">
           <label htmlFor="email">
             email<strong className="asterisk">*</strong>
