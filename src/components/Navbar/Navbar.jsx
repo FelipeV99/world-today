@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext, CurrentComponentContext } from "../../App";
 import { signOut } from "firebase/auth";
 import { auth } from "../../config/firebase";
+import { format } from "date-fns";
 
 export default function Navbar() {
   const { setCurrentComponent } = useContext(CurrentComponentContext);
@@ -19,10 +20,11 @@ export default function Navbar() {
     setCurrentComponent("home");
     navigate("/signin");
   }
+
   return (
     <nav className="nav">
       <div className="nav-top">
-        <div className="nav-left">08 Sept, 2024</div>
+        <div className="nav-left">{format(new Date(), "d MMM, yyyy")}</div>
         <Link
           className="nav-center"
           to="/"

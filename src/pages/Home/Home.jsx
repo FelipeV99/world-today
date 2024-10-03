@@ -20,6 +20,8 @@ export default function Home() {
   const { mainHeadline, secondaryHeadlines, tertiaryHeadlines } =
     useLoaderData();
   const [isMainHeadlineHover, setIsMainHeadlineHover] = useState(false);
+  // const [isSecondaryHeadlineHover, setIsSecondaryHeadlineHover] =
+  //   useState(false);
 
   const { setCurrentComponent } = useContext(CurrentComponentContext);
   const navigate = useNavigate();
@@ -94,8 +96,18 @@ export default function Home() {
         <div
           className="secondary-headline-img"
           onClick={() => handleOnCklickHeadline(secondaryHeadlines[0].id)}
+          // onMouseEnter={() => {
+          //   setIsSecondaryHeadlineHover(true);
+          // }}
+          // onMouseLeave={() => {
+          //   setIsSecondaryHeadlineHover(false);
+          // }}
         >
-          <AsyncImg src={secondaryHeadlines[0].imgUrl} />
+          <AsyncImg
+            src={secondaryHeadlines[0].imgUrl}
+            // clickableImg={true}
+            // isMouseOver={isSecondaryHeadlineHover}
+          />
           {/* <div className="secondary-img-content">
             {secondaryHeadlines[0].categories.map((category) => {
               return (
